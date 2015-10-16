@@ -1,0 +1,287 @@
+.app-cam input[type="submit"], .btn-success1, .singin{
+  font-family: 'Dorsa-Regular';
+  margin-top:3%;
+  margin-bottom: 3%;
+  font-size: 2em;
+  font-weight: 300 !important;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+  padding: 10px 15px;
+  width: 50%;
+  border: none;
+  background: #0063c7;
+  border-radius: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  overflow:hidden;
+}
+#fail{
+  display:none;
+}
+#registerbutton a{
+  outline: none;
+  width:100%;
+  text-decoration: none;
+  color: #fff;
+  overflow: hidden;
+}
+
+.app-cam input[type="submit"]:hover, .btn-success1:hover,.singin:hover{
+  background:silver;
+  color:#fff !important;
+}
+.app-cam {
+  width:22%;
+  margin:3em auto auto auto;
+}
+.app-cam input[type="text"] {
+  font-family: 'Dorsa-Regular';
+
+  width: 100%;
+  padding: 15px;
+  color: white;
+  font-size: 1.5em;
+  outline: none;
+  font-weight: 300;
+  border: none;
+  background:#222224;
+  margin:0 0 1em 0;
+}
+.app-cam input[type="password"] {
+  width: 100%;
+  padding: 20px;
+  color: white;
+  font-size: 1em;
+  outline: none;
+  font-weight: 300;
+  border: none;
+  background:#222224;
+  margin:0 0 1em 0;
+}
+
+body {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+}
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../fonts/glyphicons-halflings-regular.eot');
+  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+.glyphicon {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+
+
+}
+.glyphicon-cog:before {
+  content: "\e019";
+}
+
+.glyphicon-home:before {
+  content: "\e021";
+}
+.glyphicon-time:before {
+  content: "\e023";
+}
+
+.glyphicon-lock:before {
+  content: "\e033";
+}
+
+
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+
+
+
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+.col-md-3 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+
+
+.button {
+    margin-top: 2em;
+    font-size: 2em;
+}
+a.button1 {
+  font-family: 'Dorsa-Regular';
+border-radius: 10%;
+    background: #0063c7 ;
+    padding: 0.5em 1em;
+    color: #fff;
+    margin-right: 1em;
+    text-decoration: none;
+	text-transform: capitalize;
+}
+a.button2 {
+    font-family: 'Dorsa-Regular';
+border-radius: 10%;
+    background: #0063c7;
+    padding: 0.5em 1em;
+    color: #fff;
+    text-decoration: none;
+	text-transform: capitalize;
+}
+.banner-center {
+    text-align: center;
+	  padding-top: 10em;
+
+}
+.logo img {
+  width: 20%;
+}
+
+@font-face {
+   font-family: 'Dorsa-Regular';
+   src: url(../fonts/BravoSC.otf)format('truetype');
+}
+
+.header{
+	background: url(../images/1.jpg) no-repeat;
+	width:100%;
+	display:block;
+	height:690px;
+	background-size: cover;/* Масштабирует изображение с сохранением пропорций так, чтобы его ширина или высота равнялась ширине или высоте блока. */
+}
+
+/*--МЫ ПРЕДЛАГАЕМ ВАМ...--*/
+.top-content {
+  text-align: center;
+  padding: 5em 0 2em;
+}
+.top-content h1 {
+  font-size: 5em;
+  color: #1B3E5C;
+  font-family: 'Dorsa-Regular';
+}
+.top-content p {
+  font-family: 'Dorsa-Regular';
+    font-size: 3em;
+  color: #B4B2B2;
+  line-height: 1em;
+}
+.grid-top {
+  text-align: center;
+}
+.glyphicon.glyphicon-home ,.glyphicon.glyphicon-time,.glyphicon.glyphicon-cog,
+.glyphicon.glyphicon-lock{
+  font-size: 1.5em;
+  color: #FFF;
+  background: #1b3e5c;
+  border-radius: 100px;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  line-height: 2.3em;
+}
+.top-grid h3{
+	font-size:2em;
+font-family: 'Dorsa-Regular';
+	font-weight: 600;
+	color:#000;
+	margin: 0.5em 0 0.3em;
+}
+.top-grid p{
+	color: #B4B2B2;
+  line-height: 1em;
+  font-size: 2em;
+  font-family: 'Dorsa-Regular';
+}
+.content-top {
+  padding: 0 0 20em;
+}
+
+
+/*--content-middle--*/
+/*--footer--*/
+.footer{
+	background: url(../images/2.jpg) no-repeat;
+  width:100%;
+
+	padding: 3em 0;
+	text-align: center;
+}
+ul.social li {
+	display: inline-block;
+}
+ul.social li i{
+	display: inline-block;
+	background: url(../images/img-sprite.png) -3px -3px;
+	width:25px;
+	height: 25px;
+	  margin: 0 6px 0 0px;
+}
+ul.social li i:hover {
+  transform: rotate(-360deg);
+  transition: 0.5s all;
+}
+ul.social li i.rss{
+	background-position: -38px -3px;
+}
+ul.social li i.twitter{
+	background-position: -72px -3px;
+}
+ul.social li i.dribble{
+	background-position: -107px -3px;
+}
+ul.social li i.linked{
+	background-position: -142px -3px;
+}
+ul.social li i.camera{
+	background-position: -176px -3px;
+}
+
+p.footer-in {
+  font-size: 1.5em;
+  width: 50%;
+  line-height: 1.5em;
+  margin: 1em auto;
+  color:black;
+}
+p.footer-class{
+	font-size: 1em;
+	color:black;
+	  margin: 3em 0;
+}
+p.footer-class a{
+	text-decoration:none;
+	color:black;
+}
+p.footer-class a:hover{
+	color:#000;
+}
+/*--//footer--*/

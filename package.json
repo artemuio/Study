@@ -1,0 +1,5 @@
+"dependencies": {
+  "express": "4.13.3",
+  "mysql": "0.0.4",
+  "nconf": "0.1.1",
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Register</title>
+        <link href="/css/style-reg.css" rel='stylesheet' type='text/css' />
+        <link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
+        <script type="text/javascript" src="/js/jquery-1.11.3.js"></script>
+        <script type="text/javascript" src="/js/register.js"></script>
+        <script type="text/javascript" src="/js/jqueryrotate.2.1.js"></script>
+    </head>
+    <body id="login">
+        <div class="form-signin app-cam" >
+            <p>Enter your personal details below</p>
+            <input id="fullname" type="text" class="form-control1" placeholder="Full Name" autofocus="">
+            <input id="email" type="text" class="form-control1" placeholder="Email" autofocus="">
+            <p> Enter your account details below</p>
+            <div id="usernamebusy">This Username is busy</div>
+            <input id="username" type="text" class="form-control1" placeholder="User Name" autofocus="">
+            <input id="password" type="password" class="form-control1" placeholder="Password">
+            <input id="retypepassword" type="password" class="form-control1" placeholder="Re-type Password">
+            <label class="checkbox-custom check-success">
+                <input type="checkbox" value="agree this condition" id="checkbox1"> <label for="checkbox1">I agree to the Terms of Service and Privacy Policy</label>
+            </label>
+            <button id="registerbutton" class="btn btn-lg btn-success1 btn-block" >Submit</button>
+            <div class="loaderblock"><img id="statusbar" src="/images/loader.png"></div>
+            <a href="/index.html"><div id="status" class="btn btn-lg btn-success1 btn-block">Registration Succed!</div></a>
+            <div class="registration">
+                Already Registered.
+                <a class="" href="/index.html">
+                Login
+                </a>
+            </div>
+        </div>
+        <div class="copy_layout login register">
+            <p>Copyright &copy; 2015 Modern. All Rights Reserved | Design by TUNATEAM</a> </p>
+        </div>
+    </body>
+</html>

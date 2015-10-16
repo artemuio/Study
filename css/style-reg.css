@@ -1,0 +1,127 @@
+@font-face {
+    font-family: 'Dorsa-Regular';
+    src: url(../fonts/BravoSC.otf)format('truetype');
+}
+
+body#login {
+    font-family: 'Dorsa-Regular';
+    background: url(../images/bg.jpg)no-repeat;
+    background-size: cover;
+    min-height: 850px;
+}
+
+.app-cam {
+    width: 22%;
+    margin: 3em auto auto auto;
+}
+
+.app-cam input[type="text"] {
+    font-family: 'Dorsa-Regular';
+    width: 100%;
+    padding: 15px;
+    color: #999;
+    font-size: 2em;
+    outline: none;
+    font-weight: 300;
+    border: none;
+    background: #222224;
+    margin: 0 0 0.5em 0;
+    border-radius: 2px;
+}
+
+.app-cam input[type="password"] {
+    font-family: 'Dorsa-Regular';
+    width: 100%;
+    padding: 15px;
+    color: #999;
+    font-size: 2em;
+    outline: none;
+    font-weight: 300;
+    border: none;
+    background: #222224;
+    margin: 0 0 0.5em 0;
+    border-radius: 2px;
+}
+
+.app-cam input[type="submit"], .btn-success1 {
+    font-family: 'Dorsa-Regular';
+    font-size: 2em;
+    font-weight: 300 !important;
+    color: #fff;
+    cursor: pointer;
+    outline: none;
+    padding: 10px 15px;
+    width: 107%;
+    border: none;
+    background: #0063c7;
+    ;
+    border-radius: 2px;
+    text-transform: uppercase;
+}
+
+.app-cam input[type="submit"]:hover, .btn-success1:hover {
+    background: silver;
+    color: #fff !important;
+}
+
+.app-cam p {
+    font-family: 'Dorsa-Regular';
+    color: #000;
+    font-size: 1.7em;
+    margin: 0.2em 0;
+}
+
+.form-signin a, .registration, .login-body label {
+    margin: 1em 0 0 0;
+    font-weight: 300;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+label {
+    font-size: 1.2em;
+}
+
+.copy p, .copy_layout p {
+    font-size: 1em;
+    color: #555;
+}
+
+.copy p a, .copy_layout p a {
+    color: #000;
+}
+
+.login {
+    text-align: center;
+    background: none;
+    padding: 0;
+    margin: 11em 0 0 0;
+}
+
+#status {
+    display: none;
+    width: 100%;
+    background-color: transparent;
+    color: gray;
+    text-align: center;
+}
+
+.loaderblock {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+#statusbar {
+    display: none;
+    position: relative;
+    width: 20%;
+    margin: auto;
+}
+
+a {
+    text-decoration: none;
+}
+#usernamebusy{
+  display:none;
+}
