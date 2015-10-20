@@ -313,6 +313,10 @@ input[type="submit"] {
 width: 20%;
 margin: auto;
 }
+
+
+
+
 .ac-container label{
 	padding: 8px 20px;
 	position: relative;
@@ -323,7 +327,7 @@ margin: auto;
 	font-size: 18px;
 	line-height: 33px;
 	font-size: 19px;
-	background:white;
+	background:#FA8072;
 	box-shadow:0px 0px 1px #DF9D77;
 	text-shadow:1px 2px 0px #DE9063;
 }
@@ -355,69 +359,55 @@ margin: auto;
 	display: none;
 }
 .ac-container article{
-	background:#fff;
+	background:#EE6363;
 	margin-top: -1px;
 	overflow: hidden;
-	height: 0px;
+	height: 5px;
 	position: relative;
 	z-index: 10;
-	transition: height 0.3s ease-in-out, box-shadow 0.6s linear;
 }
-.ac-container article p{
-	line-height: 23px;
-    font-size: 14px;
-    padding: 15px 20px;
-    color: #999;
-    background-color: #fff;
-}
+
 .ac-container input:checked ~ article{
 	transition: height 0.5s ease-in-out, box-shadow 0.1s linear;
 	box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3);
 }
 .ac-container input:checked ~ article.ac-small{
-	height: 240px;
-}
-.ac-container input:checked ~ article.ac-medium{
-	height: 180px;
-}
-.ac-container input:checked ~ article.ac-large{
-	height: 230px;
-}
-.login-form p {
-    font-size: 0.9em;
-    text-align: center;
-    line-height: 1.9em;
-    color: #fff;
-    margin-top: 1em;
+	height: 130px;
 }
 .ac-small ul{
-	padding:0 0 0 2em;
-	margin:1em 0 0;
-	width: 90.5%;
+	margin:auto;
+	width: 100%;
 }
 .ac-small ul li{
 	list-style-type: none;
-    padding:0.8em 0 0.8em 2em;
-    box-shadow: 0px 0px 3px #E1DCDC;
-	margin:0 0 1em;
+	margin:auto;
 }
 .ac-small ul li:hover{
 	box-shadow: 0px 0px 3px #E1DCDC;
 	border-left:2px solid #E86850;
 }
 .ac-small ul li a{
-	font-size:14px;
-	color:#999;
+	font-size:1em;
+	color:white;
+	font-family: 'Open Sans', sans-serif;
 	text-decoration:none;
 	text-transform: capitalize;
 	display: block;
 }
+
+
+
+.grid1 a{
+	text-decoration: none;
+	color: white;
+}
 .grid1 i{
-	background: url(../images/1.png) no-repeat 0px 0px;
+	background: url(../images/1.png) no-repeat ;
+	background-size: 70%;
     width: 24px;
     height: 24px;
     padding-right: 2em;
-	padding-bottom: .3em;
+		padding-bottom: .3em;
 }
 .grid2 i{
 	background: url(../images/2.png) no-repeat 0px 0px;
@@ -432,4 +422,7 @@ margin: auto;
     height: 24px;
     padding-right: 2em;
 	padding-bottom: .3em;
+}
+#new-project{
+	background-color: #FF7F50;
 }
