@@ -49,6 +49,7 @@ background:white;
   margin:0 0 1em 0;
 }
 .app-cam input[type="password"] {
+
     font-family: 'Dorsa-Regular';
   width: 100%;
   padding: 15px;
@@ -69,11 +70,7 @@ body {
   background-color: #fff;
 }
 
-@font-face {
-  font-family: 'Glyphicons Halflings';
-  src: url('../fonts/glyphicons-halflings-regular.eot');
-  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-}
+
 .glyphicon {
   position: relative;
   top: 1px;
@@ -84,20 +81,6 @@ body {
   line-height: 1;
 
 
-}
-.glyphicon-cog:before {
-  content: "\e019";
-}
-
-.glyphicon-home:before {
-  content: "\e021";
-}
-.glyphicon-time:before {
-  content: "\e023";
-}
-
-.glyphicon-lock:before {
-  content: "\e033";
 }
 
 
@@ -198,16 +181,45 @@ border-radius: 10%;
 .grid-top {
   text-align: center;
 }
-.glyphicon.glyphicon-home ,.glyphicon.glyphicon-time,.glyphicon.glyphicon-cog,
-.glyphicon.glyphicon-lock{
-  font-size: 1.5em;
-  color: #FFF;
-  background: #1b3e5c;
+.glyphicon.glyphicon-home {
   border-radius: 100px;
-  width: 50px;
-  height: 50px;
+  width: 80px;
+  height: 80px;
   text-align: center;
   line-height: 2.3em;
+  background: url("../images/creat.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.glyphicon.glyphicon-time{
+  border-radius: 100px;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  line-height: 2.3em;
+  background: url("../images/edu.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+.glyphicon.glyphicon-cog{
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  line-height: 2.3em;
+  background: url("../images/calen.png");
+  background-size: 90%;
+  background-repeat: no-repeat;
+}
+
+.glyphicon.glyphicon-lock{
+  border-radius: 100px;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  line-height: 2.3em;
+  background: url("../images/worker.png");
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 .top-grid h3{
   font-size:3em;
@@ -232,8 +244,8 @@ color: #1B3E5C;
 .footer{
 	background: url(../images/2.jpg) no-repeat;
   width:100%;
-
 	padding: 3em 0;
+  margin-top: 150px;
 	text-align: center;
 }
 ul.social li {
@@ -274,9 +286,10 @@ p.footer-in {
   color:black;
 }
 p.footer-class{
-	font-size: 1em;
+  font-family: 'Dorsa-Regular';
+	font-size: 1.5em;
 	color:black;
-	  margin: 3em 0;
+	margin: 3em 0;
 }
 p.footer-class a{
 	text-decoration:none;
