@@ -110,7 +110,9 @@ label {
     color: gray;
     text-align: center;
 }
-
+#rules{
+  color:black;
+}
 .loaderblock {
     width: 100%;
     margin: auto;
