@@ -177,8 +177,7 @@ width:70%;
 }
 .new_form{
 	height: 900px;
-	background: #E0FFFF;
-	opacity: 0.9;
+	background-color:#8fb1cc ;
 	border-bottom: 1px solid #BBA9E2;
 }
 .footer{
@@ -390,11 +389,11 @@ input[type="text"]:hover{
 	text-align: center;
 	margin: 20px 120px;
 	padding: 40px 25px;
-	background: #458B74;
+	background: #00CDCD;
 	width: 130px;
 	height: 108px;
-	border: 5px solid #363D4D;
-	box-shadow: 0px 0px 5px #272727;
+	border: 5px solid #668B8B;
+	box-shadow: 0px 0px 5px #7FFFD4;
 	border-radius: 80px;
 }
 .image p{
@@ -402,6 +401,7 @@ input[type="text"]:hover{
 	color: #f5f5f5;
 	font-size: 1.6em;
 	line-height: 40px;
+	text-decoration: none;
 }
 
 #new-project{
