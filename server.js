@@ -72,7 +72,7 @@ function start(route, handle, pool, sessionStore) {
             connection.release();
         });
     });
-    
+
     app.post('/login', function(req, res, next) {
         passport.authenticate('local-login', function(err, user) {
             if (err) {
@@ -99,10 +99,16 @@ function start(route, handle, pool, sessionStore) {
         if (req.isAuthenticated()) return next();
         res.redirect('/');
     }
-    app.get('/profile',isLoggedIn, function(req, res) {
+
+    app.get('/profile', isLoggedIn, function(req, res) {
         res.render('profile.ejs', {
             user: req.user // get the user out of session and pass to template
         });
+    });
+
+    app.get('/logout',isLoggedIn,function(req,res){
+        req.logout();
+        res.redirect('/');
     });
     app.use(function(request, response) {
         var pathname = url.parse(request.url).pathname;

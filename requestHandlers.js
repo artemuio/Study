@@ -44,15 +44,19 @@ function show(fs,response) {
 
 function start(fs,response,req) {
 //  console.log("Request handler 'start' was called.");
-fs.readFile('index.html',function(err,info){
- if(err){
-  console.log("Error in reading index.html");
-  response.writeHead(500);
-  response.end("Error in server");
-  return;
-}
-  response.end(info);
-});
+  if(!req.isAuthenticated()){
+    fs.readFile('index.html',function(err,info){
+      if(err){
+        console.log("Error in reading index.html");
+        response.writeHead(500);
+        response.end("Error in server");
+      return;
+      }
+      response.end(info);
+    });
+  } else {
+    response.redirect('/profile');
+  }
 }
 
 function siteuploaddata(fs,pathname,response){
