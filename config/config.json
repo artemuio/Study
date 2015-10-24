@@ -5,5 +5,8 @@
 	"db_3":"qwerty123",
 	"db_user":"root",
 	"db_host":"localhost",
-	"db_port":"3306"
+	"db_port":"3306",
+	"fb_clientId":1665657620381083,
+	"fb_secret":"7b8589af2e027db2dd44e959f2254213",
+	"auth_callbackURL":"https://127.0.0.1/auth/facebook/callback"
 }

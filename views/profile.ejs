@@ -3,11 +3,13 @@
 <head>
 <title>The Transparent-Uikit Website Template | Home :: w3layouts</title>
 <link href="css/style-pr.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="/js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="/js/profile.js"></script>
 </head>
 <body>
 	<div class="logo">
 		<a href="#">
-				<img src="images/logo-pr.gif" alt="travel html5 template" title="travel html5 template">
+				<img src="/images/logo-pr.gif" alt="travel html5 template" title="travel html5 template">
 		</a>
 	</div>
 <div class="wrap">
@@ -15,11 +17,9 @@
 	<div class="grids_of_3">
 		<div class="grid1_of_3">
 			<div class="grid_img">
-				<img src="images/pic1.jpg" alt=""/>
+				<img src="/images/pic1.jpg" alt=""/>
 						<div class="list_top">
 							  <h4 id="username"><%=user.username%></h4>
-              
-
 						</div>
 			</div>
 			<div class="menu_box_list">
@@ -61,8 +61,8 @@
 							<li>
 <div  class="nav-icon"> </div>
 								<ul>
-									<li><a class="root-nav1" href="">LOGOUT</a></li>
-									<li><a class="root-nav2" href="">SETTING PROFILE</a></li>
+									<li><a class="root-nav1" href="/logout">LOGOUT</a></li>
+									<li><a id="settings" href="#" class="root-nav2">SETTING PROFILE</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -90,12 +90,13 @@
 			<div class="footer">
 				<p class="link">© All rights reserved | Template by&nbsp;<a href="#"> TUNATEAM</a></p>
 			</div>
-
 		</div>
-
-
-
 	</div>
+</div>
+<div id="hover"></div>
+<div id="popup">
+    	<div id="close">X</div>
+    	<h2>Follow me on Twitter!</h2>    
 </div>
 </body>
 </html>

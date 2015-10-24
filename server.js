@@ -11,6 +11,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var FacebookStrategy = require('passport-facebook').Strategy;
 var Users = require('./models/user');
 var session = require('express-session');
 var app = express();
@@ -56,6 +57,22 @@ function start(route, handle, pool, sessionStore) {
             connection.release();
         });
     }));
+
+
+
+    passport.use(new FacebookStrategy({
+        clientID:config.get("fb_clientId"),
+        clientSecret:config.get("fb_secret"),
+        profileFields: ['id', 'displayName', 'photos'],
+        callbackURL: config.get("auth_callbackURL"),
+        enableProof: false
+    }, function(accessToken, refreshToken, profile, done) {
+        User.findOrCreate({
+            facebookId: profile.id
+        }, function(err, user) {
+            return done(err, user);
+        });
+    }));
     passport.serializeUser(function(user, done) {
         //  console.log("User:" + user.id_user);
         done(null, user.id_user);
@@ -72,7 +89,14 @@ function start(route, handle, pool, sessionStore) {
             connection.release();
         });
     });
-    
+    app.get('/auth/facebook', passport.authenticate('facebook'), function(req, res) {
+        //This function will not be called;
+    });
+    app.get('/auth/facebook/callback', passport.authenticate('facebook', {
+        failureRedirect: '/'
+    }), function(req, res) {
+        res.redirect('/profile');
+    });
     app.post('/login', function(req, res, next) {
         passport.authenticate('local-login', function(err, user) {
             if (err) {
@@ -99,10 +123,14 @@ function start(route, handle, pool, sessionStore) {
         if (req.isAuthenticated()) return next();
         res.redirect('/');
     }
-    app.get('/profile',isLoggedIn, function(req, res) {
+    app.get('/profile', isLoggedIn, function(req, res) {
         res.render('profile.ejs', {
             user: req.user // get the user out of session and pass to template
         });
+    });
+    app.get('/logout', isLoggedIn, function(req, res) {
+        req.logout();
+        res.redirect('/');
     });
     app.use(function(request, response) {
         var pathname = url.parse(request.url).pathname;
