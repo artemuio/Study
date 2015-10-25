@@ -438,7 +438,7 @@ margin: auto;
   z-index:22;
 }
 
-#popup{
+#popup,#popupforproject{
   position:absolute;
   display:none;
   width:600px;
@@ -455,7 +455,7 @@ margin: auto;
   z-index: 22;
 }
 
-#close{
+#close,#closeproject{
   position:absolute;
   background:black;
   color:white;
