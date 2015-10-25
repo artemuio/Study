@@ -1,4 +1,7 @@
 $(document).ready(function(){
+
+  $("#hover").height($(document).height());
+
   $("#settings").click(function(){
   	$("#hover").fadeIn();
     $("#popup").fadeIn();
@@ -25,10 +28,30 @@ $(document).ready(function(){
   });
   
   //chiusura al click sul pulsante
-  $("#closeproject").click(function(){
+  $("#closenewproject").click(function(){
     $("#hover").fadeOut();
     $("#popupforproject").fadeOut();
   });
-  //<input id="settings"type="checkbox" />
-										//<label for="settings" class="root-nav2" >SETTING PROFILE</input>
+
+  $("#submitbuttonnewproject").click(function(){
+    if($('#newprojectname')[0].value !=""){
+      $.ajax({
+            url:"/createnewproject",
+            method:"POST",/////////////////////////method get for name 
+            data:{
+                name:$('#newprojectname')[0].value,
+                theme:$('#selectthemenewproject')[0].options.selectedIndex,
+             //   friends:
+                format:$('#selectformatnewproject')[0].options.selectedIndex,
+                about:$('#newprojecttextabout')[0].value
+            },
+             success:function(){
+              $("#closenewproject").click();
+            },
+            error:function(){
+                console.log("Username error");
+            }
+        })
+    };
+  });
 });
