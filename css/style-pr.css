@@ -320,7 +320,6 @@ margin: auto;
 .ac-container label{
 	padding: 8px 20px;
 	position: relative;
-	z-index: 20;
 	display: block;
 	cursor: pointer;
 	color: #fff;
@@ -364,7 +363,6 @@ margin: auto;
 	overflow: hidden;
 	height: 5px;
 	position: relative;
-	z-index: 10;
 }
 
 .ac-container input:checked ~ article{
@@ -442,10 +440,10 @@ margin: auto;
   position:absolute;
   display:none;
   width:600px;
-  height:500px;
+  height:700px;
   background:#F0F8FF;
   left:50%;
-  top:50%;
+  top:30%;
   border-radius:5px;
   padding:60px 0;
   margin-left:-320px; /* width/2 + padding-left */
@@ -536,4 +534,44 @@ input[type="text"]:hover{
 }
 .image a{
 	text-decoration: none;
+}
+select{
+	font-family: 'Dorsa-Regular', sans-serif;
+	width: 53.5%;
+	margin: auto;
+	padding: 12px 13px;
+	color: black;
+	font-size: 1.5em;
+	outline: none;
+	background: #fff;
+	font-weight: 500;
+	border: 1px solid #E4E4E4;
+	margin: 11px 0px 0px 0px;
+}
+textarea {
+	font-family: 'Dorsa-Regular', sans-serif;
+	 width: 50%;
+	 height: 100px;
+	 padding: 12px 13px;
+	 color: black;
+	 font-size: 1.5em;
+	 background: #fff;
+	 font-weight: 500;
+	 border: 1px solid #E4E4E4;
+	 margin: 11px 0px 0px 0px;
+}
+
+.submit3{
+	margin-top: 1%;
+	font-family: 'Dorsa-Regular' !important;
+	font-size: 1.5em;
+	color: black;
+	font-weight: 500;
+	text-align: left;
+	border: 1px solid #E4E4E4 !important;
+
+	width: 53.5% !important;
+	height: 50px !important;
+	background-color: #fff !important;
+	background-image: none !important;
 }
