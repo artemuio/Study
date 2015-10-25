@@ -128,6 +128,7 @@ body {
 .btn_style{
 	border-radius: 10px 10px 0 0;
 	box-shadow: inset 0px 1px 0 rgba(255, 255, 255, 0.28);
+	position:relative;
 
 }
 .btn_style h4{
@@ -287,11 +288,18 @@ height: 100px;
 	text-transform: uppercase;
 }
 
+.searchform{
+	width:100%;
+	height: 100%;
+	position: absolute;
+}
+
 .search {
-	position: relative;
-padding-left: 70%;
- width: 200px; /* Ширина поля с кнопкой */
- min-height: 19px; /* Минимальная высота */
+	margin:auto;
+	margin: auto auto auto 65%;
+	margin-top: 2.5%;
+	height: 100%;
+ 	width: 200px; /* Ширина поля с кнопкой */
 }
 input[type="search"] {
 border:none;
@@ -302,7 +310,7 @@ border-radius: 2%;
 }
 input[type="submit"] {
  width: 10%; /* Ширина кнопки */
- height: 100%; /* Высота кнопки */
+ /*height: 100%; /* Высота кнопки */
  border: none; /* Убираем рамку */
  background: #0063c7;
  background-image: url('../images/search.png');
@@ -370,7 +378,7 @@ margin: auto;
 	box-shadow: 0px 0px 0px 1px rgba(155,155,155,0.3);
 }
 .ac-container input:checked ~ article.ac-small{
-	height: 130px;
+	height: 500px;
 }
 .ac-small ul{
 	margin:auto;
@@ -429,7 +437,7 @@ margin: auto;
   position:absolute;
   display:none;
   background:white;
-	opacity: 0.5;
+  opacity: 0.5;
   width:100%;
   height:100%;
   opacity: .6
@@ -453,7 +461,7 @@ margin: auto;
   z-index: 22;
 }
 
-#close,#closeproject{
+#close,#closenewproject{
   position:absolute;
   background:black;
   color:white;
@@ -575,3 +583,8 @@ textarea {
 	background-color: #fff !important;
 	background-image: none !important;
 }
+
+.textforadditions{
+	resize: none;
+}
+

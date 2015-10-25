@@ -33,8 +33,9 @@
 						<label for="ac-2" class="grid2"><i></i>HAPPY NEW YEAR</label>
 						<article class="ac-small">
 							<ul>
-								<li><a href="#">Place</a></li>
-								<li><a href="#">Food</a></li>
+								<%table_names.forEach(function(table_names){ %>
+									<li><a href="#"><%=table_names.name%></a></li>
+  								<% }); %>
 							</ul>
 						</article>
 					</div>
@@ -54,12 +55,17 @@
 		</div>
 		<div class="grid1_of_3 left main">
 			<div class="btn_style bg">
-
+				<form class="searchform">
+					 <div class="search">
+						<input type="search" name="q">
+						<input type="submit" value="">
+					</div>
+ 				</form>
 				<div class="top-nav">
 
 						<ul class="menu2">
 							<li>
-<div  class="nav-icon"> </div>
+								<div  class="nav-icon"> </div>
 								<ul>
 									<li><a class="root-nav1" href="/logout">LOGOUT</a></li>
 									<li><a id="settings" href="#" class="root-nav2">SETTING PROFILE</a></li>
@@ -70,14 +76,9 @@
 
 				<div class='name'>
 
-				<h4>MY PROFILE</h4>
-</div>
-<form>
-	 <div class="search">
-		<input type="search" name="q">
-		<input type="submit" value="">
-	</div>
- </form>
+					<h4>MY PROFILE</h4>
+				</div>
+
 			</div>
 			<div class="friends_form">
 
@@ -114,45 +115,41 @@
 		 </div>
 </div>
 <div id="popupforproject">
-    	<div id="closeproject">X</div>
-			<div class="new_form">
-				<div class="Regisration">
-
-				 <div class="contact-text2"><h3>Новый проект</h3>
- 					<form>
-						<div class="image">
-							<a href="#single.html">
-							<img src="images/camera.png" alt="">
-							<p>Логотип проекта</p>
-							</a>
-						</div>
- 								<input placeholder="Название проекта" class="mail" type="text" required="">
-								<p><select name="num" form="data">
-    <option value="1">Тема проекта</option>
-    <option value="2">Дизайн</option>
-    <option value="3">Путешествия</option>
-    <option value="4">Бизнес</option>
-		<option value="4">Стартап</option>
-		<option value="5">Обучение</option>
-		<option value="6">Мероприятие</option>
-  </select></p>
-	<div >
-		<input class="submit3" type="submit" value=" Добавить участников">
-	</div>
-	<p><select name="num" form="data">
-<option value="1">Формат проекта</option>
-<option value="2">Открытый</option>
-<option value="3">Закрытый</option>
-
-</select></p>
- 						 <textarea placeholder="Описание проекта"></textarea>
- 					</form>
- 				</div>
+    <div id="closenewproject">X</div>
+	<div class="new_form">
+		<div class="Regisration">
+			<div class="contact-text2"><h3>Новый проект</h3>
+ 				<form>
+				<div class="image">
+					<a href="#single.html">
+						<img src="images/camera.png" alt="">
+						<p>Логотип проекта</p>
+					</a>
+				</div>
+ 				<input id="newprojectname" placeholder="Название проекта" class="mail" type="text" required="">
+				<p><select id="selectthemenewproject" name="num" form="data">
+			    	<option value="0">Дизайн</option>
+			    	<option value="1">Путешествия</option>
+			   		<option value="2">Бизнес</option>
+					<option value="3">Стартап</option>
+					<option value="4">Обучение</option>
+					<option value="5">Мероприятие</option>
+  				</select></p>
+				<div >
+					<input class="submit3" type="submit" value=" Добавить участников">
+				</div>
+					<p><select id="selectformatnewproject" name="num" form="data">
+						<option value="0">Открытый</option>
+						<option value="1">Закрытый</option>
+					</select></p>
+ 					<textarea id="newprojecttextabout" class="textforadditions" placeholder="Описание проекта"></textarea>
+ 				</form>
+ 			</div>
 		</div>
 		<div >
-			<input class="submit2" type="submit" value="Добавить проект">
+			<input class="submit2" id="submitbuttonnewproject" type="submit" value="Добавить проект">
 		</div>
-			</div>
+	</div>
 </div>
 </body>
 </html>
