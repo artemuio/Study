@@ -37,5 +37,6 @@ handle["/upload"] = requestHandlers.upload;
 handle["/show"] = requestHandlers.show;
 handle["/siteuploaddata"] = requestHandlers.siteuploaddata;
 handle["/singin"] = requestHandlers.singin;
+handle["/createnewproject"] = requestHandlers.createnewproject;
 
 server.start(router.route, handle, pool,sessionStore);
