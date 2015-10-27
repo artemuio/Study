@@ -1,8 +1,9 @@
 ﻿<!DOCTYPE HTML>
 <html>
 <head>
-<title>The Transparent-Uikit Website Template | Home :: w3layouts</title>
-<link href="css/style-pr.css" rel="stylesheet" type="text/css" media="all" />
+<title>Profile | <%=user.username%></title>
+<link href="/css/style-pr.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/images/favicon.ico" rel="icon" type="image/x-icon" />
 <script type="text/javascript" src="/js/jquery-1.11.3.js"></script>
 <script type="text/javascript" src="/js/profile.js"></script>
 </head>
@@ -28,17 +29,19 @@
 						<input id="ac-1" name="accordion-1" type="checkbox" />
 						<label id="new-project" for="ac-1" class="grid1"><i></i><a id="createnewproject" href="#">Create New Project</a></label>
 					</div>
+					<%table_names.forEach(function(table_names){ %>
 					<div>
-						<input id="ac-2" name="accordion-1" type="checkbox" />
-						<label for="ac-2" class="grid2"><i></i>HAPPY NEW YEAR</label>
+						<input id="<%=table_names.name%>" name="accordion-1" type="checkbox" />
+						<label for="<%=table_names.name%>" class="grid2"><i></i><%=table_names.name%></label>
 						<article class="ac-small">
 							<ul>
-								<%table_names.forEach(function(table_names){ %>
-									<li><a href="#"><%=table_names.name%></a></li>
-  								<% }); %>
+								
+									<li><a href="#">asdasd</a></li>
+  								
 							</ul>
 						</article>
 					</div>
+					<% }); %>
 					<div>
 						<input id="ac-3" name="accordion-1" type="checkbox" />
 						<label for="ac-3" class="grid3"><i></i>STUDY</label>

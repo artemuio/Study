@@ -3,27 +3,6 @@
 var querystring = require("querystring"),
 formidable = require("formidable");
 
-function upload(fs,response, request) {
-  console.log("Request handler 'upload' was called.");
-
-  var form = new formidable.IncomingForm();
-  console.log("about to parse");
-  form.parse(request, function(error, fields, files) {
-   console.log("parsing done");
-
-   /* Возможна ошибка в Windows: попытка переименования уже существующего файла */
-   fs.rename(files.upload.path, "tmp/test.png", function(err) {
-     if (err) {
-      fs.unlink("tmp/test.png");
-      fs.rename(files.upload.path, "tmp/test.png");
-    }
-  });
-   response.writeHead(200, {"Content-Type": "text/html"});
-   response.write("received image:<br/>");
-   response.write("<img src='/show' />");
-   response.end();
- });
-}
 
 function show(fs,response) {
   console.log("Request handler 'show' was called.");
@@ -40,10 +19,29 @@ function show(fs,response) {
  });
 }
 
-//var User = require('./models/user').User;
+function upload(fs,response, request) {
+  console.log("Request handler 'upload' was called.");
+
+  var form = new formidable.IncomingForm();
+  console.log("about to parse");
+  form.parse(request, function(error, fields, files) {
+   console.log("parsing done");
+
+   /* Возможна ошибка в Windows: попытка переименования уже существующего файла */
+   fs.rename(files.upload, "tmp/test.png", function(err) {
+     if (err) {
+      fs.unlink("tmp/test.png");
+      fs.rename(files.upload, "tmp/test.png");
+    }
+  });
+   response.writeHead(200, {"Content-Type": "text/html"});
+   response.write("received image:<br/>");
+   response.write("<img src='/show' />");
+   response.end();
+ });
+}
 
 function start(fs,response,req) {
-//  console.log("Request handler 'start' was called.");
   if(!req.isAuthenticated()){
     fs.readFile('index.html',function(err,info){
       if(err){
@@ -109,7 +107,6 @@ function singin(fs,response, request,pool){
             response.end();
             console.log("MYSQL: ERROR: ",er);
           } else {
-           // console.log("Added user:"+obj.name+":"+obj.username+":"+obj.password+":"+obj.email);
             createprojecttable(conn,result.insertId,request.body.username,function(error){
                 if(error == null){
                   conn.query("UPDATE users SET users.table_name = ? WHERE users.id_user = ? ",[request.body.username+result.insertId,result.insertId],function(err){
@@ -152,7 +149,7 @@ function singin(fs,response, request,pool){
 };
 
 function checkusername(username,conn,callback){
-  conn.query("SELECT username FROM users WHERE username = ? LIMIT 2",username,function(er,res){//request.url.substring(17,request.url.length)
+  conn.query("SELECT username FROM users WHERE username = ? LIMIT 2",username,function(er,res){
           if(er){
             console.log("Erro is SELECT");
             callback(er);
@@ -199,9 +196,6 @@ function createnewproject(fs,response, request,pool){
     });
   }
 }
-
-
-//var app = require('./server').app;
 
 exports.upload = upload;
 exports.show = show;
