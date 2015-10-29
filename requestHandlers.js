@@ -5,29 +5,47 @@ formidable = require("formidable");
 
 function upload(fs,response, request) {
   console.log("Request handler 'upload' was called.");
-
+ /* response.download('/archive.zip', 'file_on_disk.zip', function(err){
+  if (!err) { console.log("Request handler 'upload' was applied.");//downloads_remaining_count--; }
+    }
+  });*/
   var form = new formidable.IncomingForm();
   console.log("about to parse");
   form.parse(request, function(error, fields, files) {
-   console.log("parsing done");
+  console.log("parsing done");
 
-   /* Возможна ошибка в Windows: попытка переименования уже существующего файла */
-   fs.rename(files.upload.path, "tmp/test.png", function(err) {
-     if (err) {
-      fs.unlink("tmp/test.png");
-      fs.rename(files.upload.path, "tmp/test.png");
+// Возможна ошибка в Windows: попытка переименования уже существующего файла 
+  fs.rename(files.downloaded_file.path, "tmp/test.png", function(err) {
+    if (err) {
+    fs.unlink("/tmp/test.png");
+    fs.rename(files.downloaded_file.path, "tmp/test.png");
     }
   });
-   response.writeHead(200, {"Content-Type": "text/html"});
-   response.write("received image:<br/>");
-   response.write("<img src='/show' />");
-   response.end();
- });
-}
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("received image:<br/>");
+  response.write("<img src='/show' />");
+  response.end();
+  });
+};
 
-function show(fs,response) {
+
+function show(fs,response,request) {
   console.log("Request handler 'show' was called.");
-  fs.readFile("tmp/test.png", "binary", function(error, file) {
+  if(request.method=='GET'){
+   response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("<form action='/upload' method='post' enctype='multipart/form-data'>"+
+    "File: <input type='file' name='downloaded_file' multiple='multiple'></input> "+
+    "<input type='submit' value='Upload'></form>");
+   response.end();
+ } if(request.method=='POST') {
+  response.download(request.files.downloaded_file, function(err){
+  if (!err) { console.log("Request handler 'upload' was applied.");//downloads_remaining_count--; }
+    } else {
+      console.log("Request handler 'upload' was denied.");
+    }
+  });
+ }
+ /* fs.readFile("tmp/test.png", "binary", function(error, file) {
    if(error) {
      response.writeHead(500, {"Content-Type": "text/plain"});
      response.write(error + "\n");
@@ -37,13 +55,11 @@ function show(fs,response) {
      response.write(file, "binary");
      response.end();
    }
- });
+ });*/
 }
 
-//var User = require('./models/user').User;
 
 function start(fs,response,req) {
-//  console.log("Request handler 'start' was called.");
   if(!req.isAuthenticated()){
     fs.readFile('index.html',function(err,info){
       if(err){
@@ -109,7 +125,6 @@ function singin(fs,response, request,pool){
             response.end();
             console.log("MYSQL: ERROR: ",er);
           } else {
-           // console.log("Added user:"+obj.name+":"+obj.username+":"+obj.password+":"+obj.email);
             createprojecttable(conn,result.insertId,request.body.username,function(error){
                 if(error == null){
                   conn.query("UPDATE users SET users.table_name = ? WHERE users.id_user = ? ",[request.body.username+result.insertId,result.insertId],function(err){
@@ -118,8 +133,16 @@ function singin(fs,response, request,pool){
                       response.end();
                       console.log("MYSQL: ERROR: ",err);
                     }else{
-                      response.writeHead(200);
-                      response.end();
+                      makedir(fs,("user/"+request.body.username+result.insertId),function(er){
+                        if(er){
+                          response.writeHead(400);
+                          response.end();
+                          console.log("FS: ERROR: ",er);
+                        } else {
+                          response.writeHead(200);
+                          response.end();
+                        }
+                      });
                     }
                   }); 
                 }else{
@@ -163,6 +186,7 @@ function checkusername(username,conn,callback){
             callback(true);
           }
       });
+  conn.release();
 }
 
 function createprojecttable(conn,id,username,callback){
@@ -175,6 +199,42 @@ function createprojecttable(conn,id,username,callback){
         });
 };
 
+function usersettings(fs,response,request,pool){
+  pool.getConnection(function(err,conn){
+    if(err){
+      console.log("MYSQL: can't get connection from pool:",err);
+      response.writeHead(400);
+      response.end();
+      return;
+      //throw err;
+    }
+    if(request.method == "GET"){
+      checkusername(request.url.substring(23,request.url.length),conn,function(err){
+        if(err){
+          response.writeHead(400);
+          response.end();
+        }else{
+          response.writeHead(200);
+          response.end(); 
+        }           
+      });
+    }
+    if(request.method == "POST"){
+      conn.query("UPDATE users SET users.username = ?, users.email = ?,users.name = ? WHERE users.id_user = ? ",[request.body.username,request.body.email,request.body.name,request.user.id_user],function(err){
+        if(err){
+          response.writeHead(400);
+          response.end();
+          console.log("MYSQL: ERROR: ",err);
+        }else{
+          response.writeHead(200);
+          response.end();
+        }
+      });
+      conn.release();
+    }
+  });
+}
+
 function createnewproject(fs,response, request,pool){
   if(request.method == "POST"){
     pool.getConnection(function(err,conn){
@@ -184,15 +244,23 @@ function createnewproject(fs,response, request,pool){
         response.end();
         return;
       }
-      conn.query("INSERT INTO ?? SET ?",[request.user.table_name,{name:request.body.name,theme:request.body.theme,format:request.body.format,about:request.body.about}],function(err){
+      conn.query("INSERT INTO ?? SET ?",[request.user.table_name,{name:request.body.name,theme:request.body.theme,format:request.body.format,about:request.body.about}],function(err,result){
         if(err){
           console.log("MYSQL: can't get connection from pool:",err);
           response.writeHead(400);
           response.end();
           return;
-        }else {
-          response.writeHead(200);
-          response.end();
+        } else {
+          makedir(fs,("user/"+request.user.table_name+"/"+(result.insertId+request.body.name)),function(er){
+            if(er){
+              console.log("FS: can`t create user`s project path:",er);
+              response.writeHead(400);
+              response.end();
+            } else{
+              response.writeHead(200);
+              response.end();
+            }
+          });
         }
       });
       conn.release();
@@ -200,8 +268,16 @@ function createnewproject(fs,response, request,pool){
   }
 }
 
+function makedir(fs,path,callback){
+  fs.mkdir(path,function(err){
+    if(err){
+      callback(err);
+    }else{
+      callback(null);
+    }
+  });
+}
 
-//var app = require('./server').app;
 
 exports.upload = upload;
 exports.show = show;
@@ -209,3 +285,4 @@ exports.start = start;
 exports.siteuploaddata = siteuploaddata;
 exports.singin = singin;
 exports.createnewproject = createnewproject;
+exports.usersettings=usersettings;

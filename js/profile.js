@@ -4,29 +4,26 @@ $(document).ready(function(){
 
   $("#settings").click(function(){
   	$("#hover").fadeIn();
-    $("#popup").fadeIn();
+    $("#settingspopup").fadeIn();
+    $("#settingsusersubmitbutton").show();
+    $("#errorinsettingsprofile").hide();
   })
   //chiusura al click sulla parte scura
   $("#hover").click(function(){
 		$(this).fadeOut();
-    $("#popup").fadeOut();
+    $("#settingspopup").fadeOut();
+    $("#popupforproject").fadeOut();
 	});
   
   //chiusura al click sul pulsante
-  $("#close").click(function(){
+  $("#closesettingspopup").click(function(){
 		$("#hover").fadeOut();
-    $("#popup").fadeOut();
+    $("#settingspopup").fadeOut();
 	});
   $("#new-project").click(function(){
     $("#hover").fadeIn();
     $("#popupforproject").fadeIn();
-  })
-  //chiusura al click sulla parte scura
-  $("#hover").click(function(){
-    $(this).fadeOut();
-    $("#popupforproject").fadeOut();
-  });
-  
+  })  
   //chiusura al click sul pulsante
   $("#closenewproject").click(function(){
     $("#hover").fadeOut();
@@ -54,4 +51,53 @@ $(document).ready(function(){
         })
     };
   });
+
+  var newusername=false;
+    $("#newusername").focusout(function(){
+        $.ajax({
+            url:"/usersettings",
+            method:"GET",
+            data:{
+                username:$("#newusername")[0].value
+            },
+            error:function(){
+                console.log("Username error");
+                $("#busylogin").show();
+                newusername=false;
+            },
+            success:function(){
+                console.log("Username is empty");
+                $("#busylogin").hide();
+                newusername=true;
+            }
+        })
+    });
+
+    $('#changeprofileimage').children('input').change(function(){
+      $('#changeprofileimage').children("a").children('p')[0].textContent = $('#changeprofileimage').children('input')[0].value ;
+    });
+
+  $("#settingsusersubmitbutton").click(function(){
+    if($('#newfullname')[0].value !="" && newusername != false && $('#newusername')[0].value !="" && $('#newemail')[0].value != ""){
+      $("#settingsusersubmitbutton").hide();
+      $.ajax({
+            url:"/usersettings",
+            method:"POST",
+            data:{
+                name:$('#newfullname')[0].value,
+                username:$('#newusername')[0].value,
+                email:$('#newemail')[0].value
+            },
+            success:function(){
+              $("#closesettingspopup").click();
+              newusername = false;
+            },
+            error:function(){
+              $("#errorinsettingsprofile").show();
+                console.log("Change error");
+            }
+        })
+    };
+  });
+
 });
