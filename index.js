@@ -23,7 +23,6 @@ var options={
         columnNames: {
             session_id: 'session_id',
             expires: 'expires',
-            user_id:'user_id',
             data: 'data'
         }
     }
@@ -38,5 +37,6 @@ handle["/show"] = requestHandlers.show;
 handle["/siteuploaddata"] = requestHandlers.siteuploaddata;
 handle["/singin"] = requestHandlers.singin;
 handle["/createnewproject"] = requestHandlers.createnewproject;
+handle["/usersettings"]=requestHandlers.usersettings;
 
 server.start(router.route, handle, pool,sessionStore);

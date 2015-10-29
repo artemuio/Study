@@ -17,7 +17,7 @@
 	<div class="grids_of_3">
 		<div class="grid1_of_3">
 			<div class="grid_img">
-				<img src="/images/pic1.jpg" alt=""/>
+				<img src="/user/<%=user.table_name%>/ava.png" alt="Avatar"/>
 						<div class="list_top">
 							  <h4 id="username"><%=user.username%></h4>
 						</div>
@@ -85,23 +85,26 @@
 	</div>
 </div>
 <div id="hover"></div>
-<div id="popup">
-    	<div id="close">X</div>
+<div id="settingspopup">
+    	<div id="closesettingspopup">X</div>
 			<div class="contact-text2">
-			 <form>
-				 <div class="image">
-					 <a href="#single.html">
-					 <img src="images/camera.png" alt="">
-					 <p>Загрузить фотографию</p>
-					 </a>
-				 </div>
-						 <input placeholder="Полное имя" class="mail" type="text" required="">
-						 <input placeholder="Логин" class="mail" type="text" required="">
-						 <input placeholder="E-mail" class="mail" type="text" required="">
+			 <div>
+			 	<form id="changeprofileimage" class="image" action="/upload" enctype="multipart/form-data" method="post">
+					<a href="#">
+					<img src="/images/camera.png" alt=".">
+					<p>Загрузить фотографию</p>
+					</a>
+					<input class="inputtypefile" type="file" name="upload" multiple="multiple">
+				 </form>
+						 <input id="newfullname" placeholder="Полное имя" class="mail" type="text" required="">
+						 <div id="busylogin">Login is busy</div>
+						 <input id="newusername" placeholder="Логин" class="mail" type="text" required="">
+						 <input id="newemail" placeholder="E-mail" class="mail" type="text" required="">
 						 <div >
-				 			<input class="submit2" type="submit" value="Сохранить изменения">
+				 			<input id="settingsusersubmitbutton" class="submit2" type="submit" value="Сохранить изменения">
 				 		</div>
-			 </form>
+				 		<div id="errorinsettingsprofile"> Changes are not applied</div>
+			 </div>
 		 </div>
 </div>
 <div id="popupforproject">
