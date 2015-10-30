@@ -394,7 +394,7 @@ margin: auto;
 }
 .ac-small ul li:hover{
 	box-shadow: 0px 0px 3px #E1DCDC;
-	border-left:2px solid #E86850;
+	border-left:2px solid white;
 }
 .ac-small ul li a{
 	font-size:1em;
