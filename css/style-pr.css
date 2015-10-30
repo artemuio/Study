@@ -96,7 +96,7 @@ body {
 .menu_box_list li a:hover,.menu_box_list li.active a{
 	color: black;
 	background-color: rgba(255, 255, 255, 0.22);
-	border-left: 8px solid #0063c7;
+	border-left: 8px solid white;
 }
 .menu_box_list li a span{
 	float: left;
