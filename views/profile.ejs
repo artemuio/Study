@@ -26,15 +26,16 @@
 				<section class="ac-container">
 					<div>
 						<input id="ac-1" name="accordion-1" type="checkbox" />
-						<label id="new-project" for="ac-1" class="grid1"><i></i><a id="createnewproject" href="#">Create New Project</a></label>
+						<label id="new-project" for="ac-1" class="grid1"><i></i><a id="createnewproject" href="#">Создать новый проект</a></label>
 					</div>
 					<%table_names.forEach(function(table_names){ %>
 					<div>
 						<input id="<%=table_names.name%>" name="accordion-1" type="checkbox" />
+
 						<label for="<%=table_names.name%>" class="grid2"><i></i><%=table_names.name%></label>
 						<article class="ac-small">
 							<ul>
-									<li><a href="#">lolka</a></li>
+									<li><a id="createnewpreproject" href="#">Создать подпроект</a>
 							</ul>
 						</article>
 					</div>
@@ -97,8 +98,9 @@
 					<input class="inputtypefile" type="file" name="upload" multiple="multiple">
 				 </form>
 						 <input id="newfullname" placeholder="Полное имя" class="mail" type="text" required="">
-						 <div id="busylogin">Login is busy</div>
-						 <input id="newusername" placeholder="Логин" class="mail" type="text" required="">
+						 <input  type="password" class="form-control1" placeholder="Старий пароль">
+						 <input  type="password" class="form-control1" placeholder="Новый пароль">
+             <input  type="password" class="form-control1" placeholder="Повторите пароль">
 						 <input id="newemail" placeholder="E-mail" class="mail" type="text" required="">
 						 <div >
 				 			<input id="settingsusersubmitbutton" class="submit2" type="submit" value="Сохранить изменения">
@@ -113,7 +115,7 @@
 		<div class="Regisration">
 			<div class="contact-text2"><h3>Новый проект</h3>
  				<form>
-				<div class="image">
+				<div class="image2">
 					<a href="#single.html">
 						<img src="images/camera.png" alt="">
 						<p>Логотип проекта</p>
@@ -121,12 +123,13 @@
 				</div>
  				<input id="newprojectname" placeholder="Название проекта" class="mail" type="text" required="">
 				<p><select id="selectthemenewproject" name="num" form="data">
-			    	<option value="0">Дизайн</option>
-			    	<option value="1">Путешествия</option>
-			   		<option value="2">Бизнес</option>
-					<option value="3">Стартап</option>
-					<option value="4">Обучение</option>
-					<option value="5">Мероприятие</option>
+					<option value="0">Выбрать тему</option>
+			    	<option value="1">Дизайн</option>
+			    	<option value="2">Путешествия</option>
+			   		<option value="3">Бизнес</option>
+					<option value="4">Стартап</option>
+					<option value="5">Обучение</option>
+					<option value="6">Мероприятие</option>
   				</select></p>
 				<div >
 					<input class="submit3" type="submit" value=" Добавить участников">

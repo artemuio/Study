@@ -67,6 +67,9 @@ body {
 .menu_box_list li:last-child{
 	border-bottom: none;
 }
+.menu_box_list li:first-child{
+	background-color: #FF6347;
+}
 .menu_box_list li a{
 	display:block;
 	color:black;
@@ -76,6 +79,7 @@ body {
 	font-weight: 600;
 	padding:18px 30px 16px;
 	border-left: 8px solid rgba(255, 255, 255, 0);
+
 }
 .menu_box_list li a > i{
 	width:26px;
@@ -232,6 +236,7 @@ height: 100px;
 }
 
 .menu2 {
+	position: relative;
 	margin-right: 5%;
 	margin-top: 5%;
 	height: 100%;
@@ -296,16 +301,15 @@ height: 100px;
 
 .search {
 	margin:auto;
-	margin: auto auto auto 65%;
-	margin-top: 2.5%;
+	margin: 1.5% auto auto 5%;
 	height: 100%;
- 	width: 200px; /* Ширина поля с кнопкой */
+ 	width: 20%; /* Ширина поля с кнопкой */
 }
 input[type="search"] {
 border:none;
-border-radius: 2%;
+border-radius: 7%;
  outline: none; /* Убираем свечение в Chrome и Safari */
- width: 175px; /* Ширина поля */
+ width: 80%; /* Ширина поля */
  vertical-align: middle; /* Выравнивание по середине */
 }
 input[type="submit"] {
@@ -314,7 +318,7 @@ input[type="submit"] {
  border: none; /* Убираем рамку */
  background: #0063c7;
  background-image: url('../images/search.png');
- background-size: 100%;
+ background-size: 90%;
  background-repeat: no-repeat;
 }
 .name{
@@ -423,11 +427,11 @@ margin: auto;
 	padding-bottom: .3em;
 }
 .grid3 i{
-	background: url(../images/3.png) no-repeat 0px 0px;
-    width: 24px;
-    height: 24px;
+		background: url(../images/1.png) no-repeat 0px 0px;
+    width: 10px;
+    height: 10px;
     padding-right: 2em;
-	padding-bottom: .3em;
+		padding-bottom: .3em;
 }
 #new-project{
 	background-color: #FF7F50;
@@ -480,17 +484,12 @@ margin: auto;
   z-index: 2;
 }
 
-
-.contact-text2 h3 {
-	    font-family: 'Dorsa-Regular', sans-serif;
-    	margin: 0;
-}
 .contact-text2 h3 {
 
 	  font-family: 'Dorsa-Regular', sans-serif;
     text-align: center;
     font-size: 4em;
-    padding: 16px 0 2px;
+    margin-top: -45px;
 }
 
 input[type="text"]{
@@ -506,6 +505,20 @@ input[type="text"]{
     border: 1px solid #E4E4E4;
     margin: 11px 0px 0px 0px;
 }
+input[type="password"]{
+		font-family: 'Dorsa-Regular', sans-serif;
+    width: 50%;
+		margin: auto;
+    padding: 12px 13px;
+    color: black !important;
+    font-size: 1.5em;
+    outline: none;
+    background: #fff;
+    font-weight: 500;
+    border: 1px solid #E4E4E4;
+    margin: 11px 0px 0px 0px;
+}
+
 input[type="text"]:hover{
  	border: 1px solid #d0d725;
  }
@@ -525,10 +538,11 @@ input[type="text"]:hover{
    src: url(../fonts/BravoSC.otf)format('truetype');
 }
 .image {
-	text-align: center;
-background: #87CEEB none repeat scroll 0% 0%;
-width: 147px;
-height: 158px;
+text-align: center;
+background: #00CED1;
+width: 200px;
+height: 200px;
+border-radius: 50%;
 box-shadow: 0px 0px 5px #87CEFA;
 /*border-radius: 80px;*/
 margin: auto;
@@ -536,11 +550,13 @@ margin: auto;
 .image p{
 	font-family: 'Dorsa-Regular';;
 	color: black;
-	font-size: 1.4em;
+	font-size: 1.6em;
 }
 .image a{
 	position: absolute;
 	text-decoration: none;
+	padding-left: 20px;
+	padding-top: 30px;
 }
 select{
 	font-family: 'Dorsa-Regular', sans-serif;
@@ -597,4 +613,25 @@ color: #F00;
 width: 100%;
 height: 100%;
 opacity: 0.0;
+}
+.image2 {
+text-align: center;
+background: #00CED1;
+width: 200px;
+height: 200px;
+border-radius: 50%;
+box-shadow: 0px 0px 5px #87CEFA;
+margin: auto;
+}
+
+.image2 p{
+	font-family: 'Dorsa-Regular';;
+	color: black;
+	font-size: 1.6em;
+}
+.image2 a{
+	position: absolute;
+	text-decoration: none;
+	margin-left: -57px;
+	padding-top: 35px;
 }
