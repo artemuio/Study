@@ -44,6 +44,24 @@ body {
 	border-radius:10px 10px 0 0;
 
 }
+.homebottom a{
+	text-decoration: none;
+	color: white;
+
+}
+.homebottom i{
+	background: url(../images/home.png) no-repeat ;
+	background-size: 80%;
+
+    width: 24px;
+    height: 24px;
+    padding-right: 2em;
+		padding-bottom: .3em;
+}
+.homebottom{
+border-bottom: 2px solid white;
+background: #FF6347 !important;
+}
 .list_top{
 	position: absolute;
 	bottom: 20px;
