@@ -28,18 +28,14 @@
 						<input id="ac-1" name="accordion-1" type="checkbox" />
 						<label  for="ac-1" class="homebottom"><i></i><a href="#">Домой</a></label>
 						<label id="new-project" for="ac-1" class="grid1"><i></i><a id="createnewproject" href="#">Создать новый проект</a></label>
-
-
 					</div>
 					<%table_names.forEach(function(table_names){ %>
 					<div>
-						<input id="<%=table_names.name%>" name="accordion-1" type="checkbox" />
-
-						<label for="<%=table_names.name%>" class="grid2"><i></i><%=table_names.name%></label>
+						<input id="<%=table_names.name%>" name="accordion-1" type="checkbox" />	
+						<label for="<%=table_names.name%>" class="grid2"><a href="/project/projectlist.html" style="text-decoration:none;"><i></i><%=table_names.name%></a></label>
 						<article class="ac-small">
 							<ul>
 									<li><a id="createnewpreproject" href="#">Создать подпроект</a></li>
-
 							</ul>
 						</article>
 
@@ -58,7 +54,6 @@
 					</div>
  				</form>
 				<div class="top-nav">
-
 						<ul class="menu2">
 							<li>
 								<div  class="nav-icon"> </div>

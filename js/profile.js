@@ -52,7 +52,7 @@ $(document).ready(function(){
     };
   });
 
-  var newusername=false;
+ /* var newusername=false;
     $("#newusername").focusout(function(){
         $.ajax({
             url:"/usersettings",
@@ -72,25 +72,45 @@ $(document).ready(function(){
             }
         })
     });
-
+*/
     $('#changeprofileimage').children('input').change(function(){
       $('#changeprofileimage').children("a").children('p')[0].textContent = $('#changeprofileimage').children('input')[0].value ;
     });
 
   $("#settingsusersubmitbutton").click(function(){
-    if($('#newfullname')[0].value !="" && newusername != false && $('#newusername')[0].value !="" && $('#newemail')[0].value != ""){
+    if($('#newfullname')[0].value !="" && $('#newemail')[0].value != ""){
       $("#settingsusersubmitbutton").hide();
       $.ajax({
             url:"/usersettings",
             method:"POST",
             data:{
                 name:$('#newfullname')[0].value,
-                username:$('#newusername')[0].value,
                 email:$('#newemail')[0].value
             },
             success:function(){
               $("#closesettingspopup").click();
-              newusername = false;
+            },
+            error:function(){
+              $("#errorinsettingsprofile").show();
+                console.log("Change error");
+            }
+        })
+    };
+  });
+
+    $("#settingsusersubmitbutton").click(function(){
+    if(true){
+  //    $("#settingsusersubmitbutton").hide();
+      var formData = new FormData($('#changeprofileimage')[0]);
+      formData.append('image',$('#changeprofileimage').children('input')[0].files[0]);
+      $.ajax({
+            url:"/usersettings",
+            method:"POST",
+            contentType: false,
+            processData: false,
+            data:formData,
+            success:function(){
+              $("#closesettingspopup").click();
             },
             error:function(){
               $("#errorinsettingsprofile").show();

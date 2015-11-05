@@ -200,7 +200,8 @@ function createprojecttable(conn,id,username,callback){
 };
 
 function usersettings(fs,response,request,pool){
-  pool.getConnection(function(err,conn){
+  if(request.method == "POST" && request.body.name != null){
+    pool.getConnection(function(err,conn){
     if(err){
       console.log("MYSQL: can't get connection from pool:",err);
       response.writeHead(400);
@@ -208,7 +209,7 @@ function usersettings(fs,response,request,pool){
       return;
       //throw err;
     }
-    if(request.method == "GET"){
+ /*   if(request.method == "GET"){
       checkusername(request.url.substring(23,request.url.length),conn,function(err){
         if(err){
           response.writeHead(400);
@@ -218,9 +219,9 @@ function usersettings(fs,response,request,pool){
           response.end(); 
         }           
       });
-    }
+    }*/
     if(request.method == "POST"){
-      conn.query("UPDATE users SET users.username = ?, users.email = ?,users.name = ? WHERE users.id_user = ? ",[request.body.username,request.body.email,request.body.name,request.user.id_user],function(err){
+      conn.query("UPDATE users SET users.email = ?,users.name = ? WHERE users.id_user = ? ",[request.body.email,request.body.name,request.user.id_user],function(err){
         if(err){
           response.writeHead(400);
           response.end();
@@ -233,6 +234,25 @@ function usersettings(fs,response,request,pool){
       conn.release();
     }
   });
+  }
+  if(request.method == "POST" && request.body.name == null){
+    console.log("Change ava profile");
+  var form = new formidable.IncomingForm();
+  console.log("about to parse");
+  form.parse(request, function(error, fields, files) {
+    console.log("parsing done");
+
+// Возможна ошибка в Windows: попытка переименования уже существующего файла 
+  fs.rename(files.upload.path,"user/"+request.user.table_name+"/ava.png", function(err) {
+    if (err) {
+      fs.unlink("user/"+request.user.table_name+"/test.png");
+      fs.rename(files.upload.path,"user/"+request.user.table_name+"/test.png");
+    }
+  });
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.end();
+  });
+  }
 }
 
 function createnewproject(fs,response, request,pool){
@@ -266,6 +286,9 @@ function createnewproject(fs,response, request,pool){
       conn.release();
     });
   }
+   if(request.method == "POST" && request.body.name == null){
+    console.log("Change ava PROJECT");
+   }
 }
 
 function makedir(fs,path,callback){
