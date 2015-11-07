@@ -9,14 +9,23 @@ function route(fs,handle, pathname, response, request,pool) {
     }
   } else {
   	pathname=pathname.substring(1,pathname.length);
-  	if(fs.existsSync(pathname) && ((pathname.substring(pathname.length-5,pathname.length)==".html")||(pathname.substring(0,6)=="fonts/")||(pathname.substring(0,4)=="css/")|| (pathname.substring(0,3)=="js/") || (pathname.substring(0,7)=="images/") || (pathname.substring(pathname.length-8,pathname.length) == "/ava.png"))) {
-  		handle["/siteuploaddata"](fs,pathname,response);
-  	} else {  	
-      console.log("About to route a request for " + pathname);
-    	response.writeHead(404, {"Content-Type": "text/html"});
-   		response.write("404 Not found");
-    	response.end();
+  	fs.exists(pathname,function(err){
+      if(err == false){
+        console.log("About to route a request for " + pathname+" does not exist");
+        response.writeHead(404, {"Content-Type": "text/html"});
+        response.write("404 Not found");
+        response.end();
+        return;
+      }
+    if((pathname.substring(pathname.length-5,pathname.length)==".html")||(pathname.substring(0,6)=="fonts/")||(pathname.substring(0,4)=="css/")|| (pathname.substring(0,3)=="js/") || (pathname.substring(0,7)=="images/") || (pathname.substring(pathname.length-8,pathname.length) == "/ava.png")) {
+      handle["/siteuploaddata"](fs,pathname,response);
+    } else {    
+      console.log("About to route a request for " + pathname+" not found");
+      response.writeHead(404, {"Content-Type": "text/html"});
+      response.write("404 Not found");
+      response.end();
     }
+    }); 
   }
 }
 

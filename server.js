@@ -131,7 +131,7 @@ function start(route, handle, pool, sessionStore) {
                 res.end();
                 return;
             }
-            conn.query("SELECT name FROM ??",[req.user.table_name],function(error,result){
+            conn.query("SELECT  id_project,name FROM ??",[req.user.table_name],function(error,result){
                 if(error){
                     console.log("Conn ERROR in /profile:"+error);
                     res.writeHead(400);
@@ -142,10 +142,36 @@ function start(route, handle, pool, sessionStore) {
                     user: req.user, // get the user out of session and pass to template
                     table_names:result
                 });
+                conn.release();
             });
         });
         
     });
+    app.get('/project', isLoggedIn, function(req, res) {
+        pool.getConnection(function(err,conn){
+            if(err){
+                console.log("Pool ERROR in /profile:"+err);
+                res.writeHead(400);
+                res.end();
+                return;
+            }
+            conn.query("SELECT id_project, name FROM ?? WHERE id_project = ?",[req.user.table_name , url.parse(req.url, true).query.id_project],function(error,result){
+                if(error){
+                    console.log("Conn ERROR in /project:"+error);
+                    res.writeHead(400);
+                    res.end();
+                    return;
+                }
+                res.render('projectlist.ejs', {
+                    user: req.user, // get the user out of session and pass to template
+                    table_names:result,
+                });
+            });
+            conn.release();
+        });
+        
+    });
+
     app.get('/logout', isLoggedIn, function(req, res) {
         req.logout();
         res.redirect('/');

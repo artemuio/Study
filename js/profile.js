@@ -98,7 +98,7 @@ $(document).ready(function(){
     };
   });
 
-    $("#settingsusersubmitbutton").click(function(){
+    $("#settingsuserschangeava").click(function(){
     if(true){
   //    $("#settingsusersubmitbutton").hide();
       var formData = new FormData($('#changeprofileimage')[0]);
@@ -119,5 +119,25 @@ $(document).ready(function(){
         })
     };
   });
+
+    $('#projects').children('div ').children('label').click(function(){
+
+      window.location.pathname=("/project?id_project="+$(this)[0].id);
+      /*
+      $.ajax({
+            url:"/project",
+            method:"GET",
+            data:{
+                id_project:$(this)[0].id//$(this)[0].value,
+            },
+            success:function(data){
+            //  window.location.pathname=("/project?id_project="+$(this)[0].id);
+            },
+            error:function(){
+           //   $("#errorinsettingsprofile").show();
+                console.log("Project error");
+            }
+        })*/
+    })
 
 });

@@ -78,7 +78,7 @@ function start(fs,response,req) {
 function siteuploaddata(fs,pathname,response){
 	fs.readFile(pathname,function(err,info){
    if(err){
-    console.log("Error in reading file");
+    console.log("Error in reading file"+ pathname);
     response.writeHead(500);
     response.end("Error in server");
     return;
@@ -128,6 +128,7 @@ function singin(fs,response, request,pool){
             createprojecttable(conn,result.insertId,request.body.username,function(error){
                 if(error == null){
                   conn.query("UPDATE users SET users.table_name = ? WHERE users.id_user = ? ",[request.body.username+result.insertId,result.insertId],function(err){
+                    conn.release();
                     if(err){
                       response.writeHead(400);
                       response.end();
@@ -158,9 +159,9 @@ function singin(fs,response, request,pool){
         response.writeHead(400);
         response.end();
       }
-      conn.release();
     } else if(request.method == "GET"){
       checkusername(request.url.substring(17,request.url.length),conn,function(err){
+          conn.release();
         if(err){
           response.writeHead(400);
           response.end();
@@ -169,7 +170,6 @@ function singin(fs,response, request,pool){
           response.end(); 
         }           
       });
-      conn.release();
     }
     });
 };
@@ -186,7 +186,6 @@ function checkusername(username,conn,callback){
             callback(true);
           }
       });
-  conn.release();
 }
 
 function createprojecttable(conn,id,username,callback){
@@ -222,6 +221,7 @@ function usersettings(fs,response,request,pool){
     }*/
     if(request.method == "POST"){
       conn.query("UPDATE users SET users.email = ?,users.name = ? WHERE users.id_user = ? ",[request.body.email,request.body.name,request.user.id_user],function(err){
+        conn.release();
         if(err){
           response.writeHead(400);
           response.end();
@@ -231,16 +231,15 @@ function usersettings(fs,response,request,pool){
           response.end();
         }
       });
-      conn.release();
     }
   });
   }
   if(request.method == "POST" && request.body.name == null){
     console.log("Change ava profile");
-  var form = new formidable.IncomingForm();
-  console.log("about to parse");
-  form.parse(request, function(error, fields, files) {
-    console.log("parsing done");
+    var form = new formidable.IncomingForm();
+    console.log("about to parse");
+    form.parse(request, function(error, fields, files) {
+      console.log("parsing done");
 
 // Возможна ошибка в Windows: попытка переименования уже существующего файла 
   fs.rename(files.upload.path,"user/"+request.user.table_name+"/ava.png", function(err) {
@@ -265,6 +264,7 @@ function createnewproject(fs,response, request,pool){
         return;
       }
       conn.query("INSERT INTO ?? SET ?",[request.user.table_name,{name:request.body.name,theme:request.body.theme,format:request.body.format,about:request.body.about}],function(err,result){
+        conn.release();
         if(err){
           console.log("MYSQL: can't get connection from pool:",err);
           response.writeHead(400);
@@ -283,7 +283,6 @@ function createnewproject(fs,response, request,pool){
           });
         }
       });
-      conn.release();
     });
   }
    if(request.method == "POST" && request.body.name == null){
