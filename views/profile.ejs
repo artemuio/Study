@@ -33,7 +33,7 @@
 					<%table_names.forEach(function(table_names){ %>
 					<div>
 						<input id="<%=table_names.id_project%>" name="accordion-1" type="checkbox" />	
-						<label id="<%=table_names.id_project%>" for="<%=table_names.id_project%>" class="grid2"><a href="#" style="text-decoration:none;"><i></i><%=table_names.name%></a></label>
+						<label id="<%=table_names.id_project%>" for="<%=table_names.id_project%>" class="grid2"><i></i><%=table_names.name%></label>
 						<article class="ac-small">
 							<ul>
 									<li><a id="createnewpreproject" href="#">Создать подпроект</a></li>
@@ -119,13 +119,19 @@
 	<div class="new_form">
 		<div class="Regisration">
 			<div class="contact-text2"><h3>Новый проект</h3>
- 				<form>
-				<div class="image2">
-					<a href="#single.html">
+ 				<form id="projectavaform" class="image" action="/upload" enctype="multipart/form-data" method="post">
+				<!--<div class="image2">-->
+					<a href="#">
 						<img src="images/camera.png" alt="">
 						<p>Логотип проекта</p>
 					</a>
-				</div>
+					<input class="inputtypefile" type="file" name="upload" multiple="multiple">
+				<!--</div>-->
+				</form>
+				<div>
+				 	<input id="projectava" class="submit2" type="submit" value="Сохранить изменения">
+				 </div>
+				<form>
  				<input id="newprojectname" placeholder="Название проекта" class="mail" type="text" required="">
 				<p><select id="selectthemenewproject" name="num" form="data">
 					<option value="0">Выбрать тему</option>

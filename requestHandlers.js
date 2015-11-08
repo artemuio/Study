@@ -140,6 +140,7 @@ function singin(fs,response, request,pool){
                           response.end();
                           console.log("FS: ERROR: ",er);
                         } else {
+                          fs.link("images/defaultava.png","user/"+(request.body.username+result.insertId)+"/ava.png");
                           response.writeHead(200);
                           response.end();
                         }
@@ -277,6 +278,7 @@ function createnewproject(fs,response, request,pool){
               response.writeHead(400);
               response.end();
             } else{
+              fs.link("images/defaultprojectava.png",("user/"+request.user.table_name+"/"+(result.insertId+request.body.name))+"/ava.png");
               response.writeHead(200);
               response.end();
             }

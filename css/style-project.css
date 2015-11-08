@@ -41,6 +41,7 @@ body {
 }
 .grid_img img{
 	width: 100%;
+	height:auto;
 	border-radius:10px 10px 0 0;
 
 }
@@ -674,7 +675,7 @@ margin: auto;
 	margin-top: 2%;
 	border-radius: 5%;
 	padding-top: 50%;
-	background-image: url('../images/8.jpg');
+	/*background-image: url('../images/8.jpg');*/
 	background-size: 100%;
 
 }
@@ -939,4 +940,10 @@ button {
 button:hover { background: linear-gradient(to bottom, #1E90FF 0%,#436EEE 100%); }
 button:active {
 background: linear-gradient(to bottom, #436EEE 0%,#1E90FF 100%);
+}
+
+.projectava{
+	width:90%;
+	height:auto;
+	border-radius:0;
 }

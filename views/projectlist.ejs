@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="/css/style-project.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="/js/jquery-1.11.3.js"></script>
-<script type="text/javascript" src="/js/profile.js"></script>
+<script type="text/javascript" src="/js/project.js"></script>
 </head>
 <body>
 	<div class="logo">
@@ -76,17 +76,54 @@
 			</div>
 			<div class="view">
 			<div class="inf_form">
-				<div class="avatar">
+				<div >
+					<%table_names.forEach(function(table_names){ %>
+					<img class="projectava" src="/user/<%=user.table_name%>/<%=table_names.id_project%><%=table_names.name%>/ava.png" alt="project avatar"/>
 					</div>
 					<div class="inf_project">
-						<p><b>Name project:</b> 2napp</p>
-						<p><b>description:</b>:How successful could you be if you stopped being slowed down by day-to-day distractions, and started making real, tangible progress on your most important work and goals?
-
-If you’re tired of always feeling like you’re farther behind than you want to be, and you’re ready to start accomplishing the things you want truly to do that will move your career and your life forward, then you need the Spark Planner. </p>
-	<p><b>subject:</b>start-up</p>
-	<p><b>format:</b>closed</p>
+						<p><b>Name project:</b><%=table_names.name%></p>
+						<p><b>description:</b><%=table_names.about%></p>
+	<p><b>subject:</b><%switch(table_names.theme){
+		case '0': %> 
+			Не выбрано
+			 <% 
+			break;
+		case '1': %>
+			Дизайн 
+		<%	break;
+		case '2': %>
+			 Путишествия
+		<%	break;
+		case '3': %>
+			Бизнес
+		<%	break;
+		case '4': %>
+			Стартап
+		<%	break;
+		case '5': %>
+			Обучение
+		<%	break;
+		case '6': %>
+			Мероприятие
+		<%	break;
+		default:%>
+		 Ошибка
+	<%	break;
+			}%></p>
+	<p><b>format:</b> <%switch(table_names.format){
+		case '0': %>
+			Открытый
+			<% break;
+		case '1': %>
+			Закрытый
+			<%break;
+		default:%>
+			Error
+			<%};%>
+	</p>
 	<p><b>participants:</b>Lashko Artem, Pavlenko Vlad, Nikita Shabalin</p>
 			</div>
+			<%});%>
 			</div>
 				<div class="container">
 
@@ -135,6 +172,9 @@ If you’re tired of always feeling like you’re farther behind than you want t
 					</a>
 					<input class="inputtypefile" type="file" name="upload" multiple="multiple">
 				 </form>
+				 <div >
+				 	<input id="settingsuserschangeava" class="submit2" type="submit" value="Сохранить изменения">
+				 </div>
 						 <input id="newfullname" placeholder="Полное имя" class="mail" type="text" required="">
 						 <input  type="password" class="form-control1" placeholder="Старий пароль">
 						 <input  type="password" class="form-control1" placeholder="Новый пароль">

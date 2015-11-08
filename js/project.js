@@ -52,27 +52,6 @@ $(document).ready(function(){
     };
   });
 
- /* var newusername=false;
-    $("#newusername").focusout(function(){
-        $.ajax({
-            url:"/usersettings",
-            method:"GET",
-            data:{
-                username:$("#newusername")[0].value
-            },
-            error:function(){
-                console.log("Username error");
-                $("#busylogin").show();
-                newusername=false;
-            },
-            success:function(){
-                console.log("Username is empty");
-                $("#busylogin").hide();
-                newusername=true;
-            }
-        })
-    });
-*/
     $('#changeprofileimage').children('input').change(function(){
       $('#changeprofileimage').children("a").children('p')[0].textContent = $('#changeprofileimage').children('input')[0].value ;
     });
@@ -120,31 +99,8 @@ $(document).ready(function(){
     };
   });
 
-    $('#projects').children('div ').children('label').click(function(){
-      
-      window.location.pathname=("/project?id_project="+$(this)[0].id);
-      
-      /*
-      $.ajax({
-            url:"/project",
-            method:"GET",
-            data:{
-                id_project:$(this)[0].id//$(this)[0].value,
-            },
-            success:function(data){
-              document.open();
-              document.write(data);
-              document.close();
-              //window.location.pathname=("/project?id_project="+$(this)[0].id);
-            },
-            error:function(){
-           //   $("#errorinsettingsprofile").show();
-                console.log("Project error");
-            }
-        });*/
-    })
 
-    $('#projectava').click(function(){
+$('#settingsuserschangeava').click(function(){
   changeprojectava();
 });
    function changeprojectava(){
@@ -153,11 +109,14 @@ $(document).ready(function(){
       var formData = new FormData($('#projectavaform')[0]);
       formData.append('image',$('#projectavaform').children('input')[0].files[0]);
       $.ajax({
-            url:"/usersettings?id_project=2",///projectsettings
+            url:"/usersettings",///projectsettings
             method:"POST",
             contentType: false,
             processData: false,
-            data:formData,
+            data:{
+              formData,
+              name:"lal"
+            },
             success:function(){
               $("#closenewproject").click();
             },
@@ -167,7 +126,5 @@ $(document).ready(function(){
             }
         });
   };
-
-
 
 });
