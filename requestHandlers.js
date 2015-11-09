@@ -14,7 +14,7 @@ function upload(fs,response, request) {
   form.parse(request, function(error, fields, files) {
   console.log("parsing done");
 
-// Возможна ошибка в Windows: попытка переименования уже существующего файла
+// Возможна ошибка в Windows: попытка переименования уже существующего файла 
   fs.rename(files.downloaded_file.path, "tmp/test.png", function(err) {
     if (err) {
     fs.unlink("/tmp/test.png");
@@ -99,7 +99,7 @@ function singin(fs,response, request,pool){
       response.end();
       return;
       //throw err;
-    }
+    }	
   /*  request.on('data', function(data) {
      queryData += data;
      if(queryData.length > 1e6) {
@@ -140,12 +140,13 @@ function singin(fs,response, request,pool){
                           response.end();
                           console.log("FS: ERROR: ",er);
                         } else {
+                          fs.link("images/defaultava.png","user/"+(request.body.username+result.insertId)+"/ava.png");
                           response.writeHead(200);
                           response.end();
                         }
                       });
                     }
-                  });
+                  }); 
                 }else{
                   response.writeHead(400);
                   response.end();
@@ -167,8 +168,8 @@ function singin(fs,response, request,pool){
           response.end();
         }else{
           response.writeHead(200);
-          response.end();
-        }
+          response.end(); 
+        }           
       });
     }
     });
@@ -215,8 +216,8 @@ function usersettings(fs,response,request,pool){
           response.end();
         }else{
           response.writeHead(200);
-          response.end();
-        }
+          response.end(); 
+        }           
       });
     }*/
     if(request.method == "POST"){
@@ -241,7 +242,7 @@ function usersettings(fs,response,request,pool){
     form.parse(request, function(error, fields, files) {
       console.log("parsing done");
 
-// Возможна ошибка в Windows: попытка переименования уже существующего файла
+// Возможна ошибка в Windows: попытка переименования уже существующего файла 
   fs.rename(files.upload.path,"user/"+request.user.table_name+"/ava.png", function(err) {
     if (err) {
       fs.unlink("user/"+request.user.table_name+"/test.png");
@@ -277,6 +278,7 @@ function createnewproject(fs,response, request,pool){
               response.writeHead(400);
               response.end();
             } else{
+              fs.link("images/defaultprojectava.png",("user/"+request.user.table_name+"/"+(result.insertId+request.body.name))+"/ava.png");
               response.writeHead(200);
               response.end();
             }

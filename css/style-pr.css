@@ -524,7 +524,7 @@ input[type="text"]{
     background: #fff;
     font-weight: 500;
     border: 1px solid #E4E4E4;
-    margin: 11px 0px 0px 0px;
+    margin: 11px 0px 0px;
 }
 input[type="password"]{
 		font-family: 'Dorsa-Regular', sans-serif;
@@ -576,7 +576,8 @@ margin: auto;
 .image a{
 	position: absolute;
 	text-decoration: none;
-	padding-left: 20px;
+	/*padding-left: 20px;*/
+	width:200px;
 	padding-top: 30px;
 }
 select{
@@ -634,7 +635,10 @@ color: #F00;
 width: 100%;
 height: 100%;
 opacity: 0.0;
+cursor: pointer;
 }
+
+/*
 .image2 {
 text-align: center;
 background: #00CED1;
@@ -656,3 +660,4 @@ margin: auto;
 	margin-left: -57px;
 	padding-top: 35px;
 }
+*/

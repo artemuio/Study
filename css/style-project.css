@@ -41,6 +41,7 @@ body {
 }
 .grid_img img{
 	width: 100%;
+	height:auto;
 	border-radius:10px 10px 0 0;
 
 }
@@ -674,7 +675,7 @@ margin: auto;
 	margin-top: 2%;
 	border-radius: 5%;
 	padding-top: 50%;
-	background-image: url('../images/8.jpg');
+	/*background-image: url('../images/8.jpg');*/
 	background-size: 100%;
 
 }
@@ -777,8 +778,6 @@ box-shadow: 0 5px 5px rgba(223, 120, 8, 1);
     -moz-transition: all 1.5s;
     transition: all 1.5s;
   cursor:pointer;
-<<<<<<< HEAD
-=======
 }
 .R
 {
@@ -941,167 +940,10 @@ button {
 button:hover { background: linear-gradient(to bottom, #1E90FF 0%,#436EEE 100%); }
 button:active {
 background: linear-gradient(to bottom, #436EEE 0%,#1E90FF 100%);
->>>>>>> refs/remotes/origin/master
-}
-.R
-{
-    float:right;
-}
-.text
-{
-  color: black;
-	font-size: 1.1em;
-  font-weight:lighter;
-	line-height: 30px;
-  width:80%;
-	max-width:85%;
-	max-height: 40%;
-  border:1px solid #B2DFEE;
-  background-color:#BFEFFF;
-  margin-top:10px;
-  border-radius:5px;
-  padding:5px;
-}
-.Area textarea
-{
-  font-size:1.5em;
-  width:90%;
-  max-width:90%;
-  min-width:90%;
-  padding:5%;
-  border-radius:5px;
-border:1px solid #ccc;
-  max-height:50px;
-  height:50px;
-  min-height:50px;
-
-color:#333;
-  outline:none;
-  border:1px solid transparent;
-  resize:none;
-	background-color:#fff;
 }
 
-
-textarea::-webkit-input-placeholder {
-   color: silver;
-}
-.Area .note
-{
-  color:#9F6905;
-  font-size:10px;
-}
-.R .tooltip
-{
-  font-size:10px;
-  position:absolute;
-  background-color:#fff;
-  padding:5px;
-  border-radius:5px;
-  border:2px solid #9F6905;
-  margin-left:70px;
-  margin-top:-70px;
-  display:none;
-  color:#545454;
-}
-.R .tooltip:before
-{
-    content: '';
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    border: 5px solid transparent;
-    border-right-color: #9F6905;
-    margin-top: 10px;
-    margin-left: -17px;
-}
-.R:hover .tooltip
-{
-  display:block;
-}
-
-.L .tooltip
-{
-  font-size:10px;
-  position:absolute;
-  background-color:#fff;
-  padding:5px;
-  border-radius:5px;
-  border:2px solid #9F6905;
-  margin-left:70px;
-  margin-top:-70px;
-  display:none;
-  color:#545454;
-}
-.L .tooltip:before
-{
-    content: '';
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    border: 5px solid transparent;
-    border-right-color: #9F6905;
-    margin-top: 10px;
-    margin-left: -17px;
-}
-.L:hover .tooltip
-{
-  display:block;
-}
-a
-{
-  text-decoration:none;
-}
-
-.Area input[type=button]
-{
-  font-size:12px;
-  padding:5px;
-  border-radius:5px;
-  border:1px solid #f0f0f1;
-  background-color:#333;
-  color:#fff;
-  outline:none;
-  border:1px solid transparent;
-  float:left;
-}
-.Area input[type=button]:hover
-{
-  color:#fff;
-  border:1px solid #ccc;
-  -webkit-transition: all 1.5s;
-  -moz-transition: all 1.5s;
-  transition: all 1.5s;
-  background-color:#9F6905;
-}
-
-.view{
-	width:101%;
-	cursor:default;
-	height:800px;
-}
-.iputtex{
-	background: blue;
-	width: 45%;
-}
-button {
-	background: linear-gradient(to bottom, #00BFFF 0%,#1E90FF 100%);
-	 color: #fff;
-	 font-size: 16px;
-	 text-shadow: 0 1px 0 #757575;
-	 padding: 4px 0 5px 0;
-	 cursor: pointer;
-	 border: 0;
-	 border-top: 1px solid #87c286;
-	 border-right: 1px solid #0e780c;
-	 border-left: 1px solid #0e780c;
-	 border-bottom: 1px solid #0e780c;
-	 box-shadow: 0 -1px 0 #0e780c, 0 1px 0 #fff;
-	 width:30%;
-	 border-radius: 5%;
-	 border-radius: 2px;
-}
-button:hover { background: linear-gradient(to bottom, #1E90FF 0%,#436EEE 100%); }
-button:active {
-background: linear-gradient(to bottom, #436EEE 0%,#1E90FF 100%);
+.projectava{
+	width:90%;
+	height:auto;
+	border-radius:0;
 }

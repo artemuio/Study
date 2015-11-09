@@ -155,19 +155,19 @@ function start(route, handle, pool, sessionStore) {
                 res.end();
                 return;
             }
-            conn.query("SELECT id_project, name FROM ?? WHERE id_project = ?",[req.user.table_name , url.parse(req.url, true).query.id_project],function(error,result){
+            conn.query("SELECT * FROM ?? WHERE id_project = ?",[req.user.table_name , url.parse(req.url, true).query.id_project],function(error,result){
                 if(error){
                     console.log("Conn ERROR in /project:"+error);
                     res.writeHead(400);
                     res.end();
                     return;
                 }
+                conn.release();
                 res.render('projectlist.ejs', {
                     user: req.user, // get the user out of session and pass to template
                     table_names:result,
                 });
             });
-            conn.release();
         });
         
     });
@@ -178,6 +178,7 @@ function start(route, handle, pool, sessionStore) {
     });
     app.use(function(request, response) {
         var pathname = url.parse(request.url).pathname;
+        pathname=pathname.replace(new RegExp("%20",'g')," ");
         route(fs, handle, pathname, response, request, pool);
     });
     https.createServer(options, app).listen(config.get('server_port'), config.get('server_ip'));
