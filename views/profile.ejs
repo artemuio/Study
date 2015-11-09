@@ -22,17 +22,18 @@
 							  <h4 id="username"><%=user.username%></h4>
 						</div>
 			</div>
-			<div class="menu_box_list">
+			<div   class="menu_box_list">
 				<section class="ac-container">
 					<div>
 						<input id="ac-1" name="accordion-1" type="checkbox" />
 						<label  for="ac-1" class="homebottom"><i></i><a href="#">Домой</a></label>
 						<label id="new-project" for="ac-1" class="grid1"><i></i><a id="createnewproject" href="#">Создать новый проект</a></label>
 					</div>
+					<div id="projects">
 					<%table_names.forEach(function(table_names){ %>
 					<div>
-						<input id="<%=table_names.name%>" name="accordion-1" type="checkbox" />	
-						<label for="<%=table_names.name%>" class="grid2"><a href="/project/projectlist.html" style="text-decoration:none;"><i></i><%=table_names.name%></a></label>
+						<input id="<%=table_names.id_project%>" name="accordion-1" type="checkbox" />	
+						<label id="<%=table_names.id_project%>" for="<%=table_names.id_project%>" class="grid2"><a href="#" style="text-decoration:none;"><i></i><%=table_names.name%></a></label>
 						<article class="ac-small">
 							<ul>
 									<li><a id="createnewpreproject" href="#">Создать подпроект</a></li>
@@ -41,6 +42,7 @@
 
 					</div>
 					<% }); %>
+				</div>
 				</section>
 				<div class="clear"></div>
 			</div>
@@ -72,7 +74,7 @@
 
 			</div>
 			<div class="friends_form">
-
+			
 			</div>
 			<div class="login_form">
 			</div>
@@ -97,6 +99,9 @@
 					</a>
 					<input class="inputtypefile" type="file" name="upload" multiple="multiple">
 				 </form>
+				 <div >
+				 	<input id="settingsuserschangeava" class="submit2" type="submit" value="Сохранить изменения">
+				 </div>
 						 <input id="newfullname" placeholder="Полное имя" class="mail" type="text" required="">
 						 <input  type="password" class="form-control1" placeholder="Старий пароль">
 						 <input  type="password" class="form-control1" placeholder="Новый пароль">
