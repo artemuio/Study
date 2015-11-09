@@ -159,10 +159,6 @@ function singin(fs,response, request,pool){
         response.writeHead(400);
         response.end();
       }
-<<<<<<< HEAD
-=======
-      
->>>>>>> refs/remotes/origin/master
     } else if(request.method == "GET"){
       checkusername(request.url.substring(17,request.url.length),conn,function(err){
           conn.release();
