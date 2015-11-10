@@ -458,7 +458,7 @@ background: #EE6363;
   opacity: 0.5;
   width:100%;
   height:100%;
-  opacity: .6
+  opacity: 0.6;
   z-index:22;
 }
 
@@ -919,23 +919,16 @@ button {
 }
 button:hover { background: #AB82FF }
 button:active {
-<<<<<<< HEAD
 background: linear-gradient(to bottom, #436EEE 0%,#1E90FF 100%);
-=======
-background: #7D26CD;);
->>>>>>> refs/remotes/artemuio/pr/10
+background: #7D26CD;
 }
 
 .projectava{
 	width:90%;
 	height:auto;
 	border-radius:0;
-<<<<<<< HEAD
-}
-=======
 }
 .avaproject {
 width: auto;
-width-min:70%;
+min-width:70%;
 }
->>>>>>> refs/remotes/artemuio/pr/10
