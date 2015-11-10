@@ -3,6 +3,7 @@
 <head>
 <title>Home</title>
 <link href="css/style-pr.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="icon" href="images/favicon22.ico" type="image/x-icon">
 <script type="text/javascript" src="/js/jquery-1.11.3.js"></script>
 <script type="text/javascript" src="/js/profile.js"></script>
 </head>
@@ -32,6 +33,7 @@
 					<div id="projects">
 					<%table_names.forEach(function(table_names){ %>
 					<div>
+						<input id="<%=table_names.id_project%>" name="accordion-1" type="checkbox" />	
 						<input id="<%=table_names.id_project%>" name="accordion-1" type="checkbox" />
 						<label id="<%=table_names.id_project%>" for="<%=table_names.id_project%>" class="grid2"><i></i><%=table_names.name%></label>
 						<article class="ac-small">
