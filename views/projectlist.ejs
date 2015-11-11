@@ -3,7 +3,6 @@
 <head>
 <title>Home</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link rel="icon" href="images/favicon22.ico" type="image/x-icon">
 <link href="/css/style-project.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="/js/jquery-1.11.3.js"></script>
 <script type="text/javascript" src="/js/project.js"></script>
@@ -29,16 +28,19 @@
 					<div>
 						<input id="ac-1" name="accordion-1" type="checkbox" />
 						<label  for="ac-1" class="homebottom"><i></i><a href="/profile">Домой</a></label>
-	<label id="redag" for="ac-1" class="grid4"><i></i><a id="createnewproject" href="#">Редактировать проект</a></label>
-						<label id="new-project" for="ac-1" class="grid1"><i></i><a id="createnewproject" href="#">Создать подпроект</a></label>
 
+						<label id="new-project" for="ac-1" class="grid1"><i></i><a id="createnewproject" href="#">Создать новый проект</a></label>
 					</div>
 					<%table_names.forEach(function(table_names){ %>
 					<div>
 						<input id="<%=table_names.name%>" name="accordion-1" type="checkbox" />
 
 						<label for="<%=table_names.name%>" class="grid2"><i></i><%=table_names.name%></label>
-
+						<article class="ac-small">
+							<ul>
+									<li><a id="createnewpreproject" href="#">Создать подпроект</a>
+							</ul>
+						</article>
 					</div>
 					<% }); %>
 				</section>
@@ -87,13 +89,7 @@
 			 <% 
 			break;
 		case '1': %>
-			Дизайн <%
-		case '0': %>
-			Не выбрано
-			 <%
-			break;
-		case '1': %>
-			Дизайн
+			Дизайн 
 		<%	break;
 		case '2': %>
 			 Путишествия

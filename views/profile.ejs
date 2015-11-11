@@ -3,7 +3,6 @@
 <head>
 <title>Home</title>
 <link href="css/style-pr.css" rel="stylesheet" type="text/css" media="all" />
-<link rel="icon" href="images/favicon22.ico" type="image/x-icon">
 <script type="text/javascript" src="/js/jquery-1.11.3.js"></script>
 <script type="text/javascript" src="/js/profile.js"></script>
 </head>
@@ -34,11 +33,10 @@
 					<%table_names.forEach(function(table_names){ %>
 					<div>
 						<input id="<%=table_names.id_project%>" name="accordion-1" type="checkbox" />	
-						<input id="<%=table_names.id_project%>" name="accordion-1" type="checkbox" />
 						<label id="<%=table_names.id_project%>" for="<%=table_names.id_project%>" class="grid2"><i></i><%=table_names.name%></label>
 						<article class="ac-small">
 							<ul>
-									<li><a id="createnewpreproject" href="#">Добавить пункт проекта</a></li>
+									<li><a id="createnewpreproject" href="#">Создать подпроект</a></li>
 							</ul>
 						</article>
 
@@ -62,8 +60,8 @@
 							<li>
 								<div  class="nav-icon"> </div>
 								<ul>
-									<li><a class="root-nav1" href="/logout">Выйти</a></li>
-									<li><a id="settings" href="#" class="root-nav2">Настройки проекта</a></li>
+									<li><a class="root-nav1" href="/logout">LOGOUT</a></li>
+									<li><a id="settings" href="#" class="root-nav2">SETTING PROFILE</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -76,7 +74,7 @@
 
 			</div>
 			<div class="friends_form">
-
+			
 			</div>
 			<div class="login_form">
 			</div>
