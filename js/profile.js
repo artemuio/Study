@@ -122,8 +122,7 @@ $(document).ready(function(){
 
     $('#projects').children('div ').children('label').click(function(){
       
-      window.location.pathname=("/project?id_project="+$(this)[0].id);
-      
+      window.location.href=("/project"+'?'+"id_project="+$(this)[0].id);
       /*
       $.ajax({
             url:"/project",
