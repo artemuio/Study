@@ -1,5 +1,3 @@
-
-
 function route(fs,handle, pathname, response, request,pool) {
   if (typeof handle[pathname] == 'function') {
       console.log("About to route a request for " + pathname);
