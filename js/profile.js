@@ -74,7 +74,7 @@ $(document).ready(function(){
     });
 */
     $('#changeprofileimage').children('input').change(function(){
-      $('#changeprofileimage').children("a").children('p')[0].textContent = $('#changeprofileimage').children('input')[0].value ;
+      $('#changeprofileimage').children("a").children('p')[0].textContent = $('#changeprofileimage').children('input')[0].files[0].name ;
     });
 
   $("#settingsusersubmitbutton").click(function(){
@@ -142,31 +142,4 @@ $(document).ready(function(){
             }
         });*/
     })
-
-    $('#projectava').click(function(){
-  changeprojectava();
-});
-   function changeprojectava(){
-    
-  //    $("#settingsusersubmitbutton").hide();
-      var formData = new FormData($('#projectavaform')[0]);
-      formData.append('image',$('#projectavaform').children('input')[0].files[0]);
-      $.ajax({
-            url:"/usersettings?id_project=2",///projectsettings
-            method:"POST",
-            contentType: false,
-            processData: false,
-            data:formData,
-            success:function(){
-              $("#closenewproject").click();
-            },
-            error:function(){
-              $("#errorinsettingsprofile").show();///////////////////////////
-                console.log("Change error");
-            }
-        });
-  };
-
-
-
 });
