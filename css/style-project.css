@@ -767,7 +767,14 @@ background: #B0C4DE;
 .R
 {
     float:right;
+
 }
+.textR{
+	background: #63B8FF;
+}
+
+.textL{
+	background:#C1FFC1;}
 .text
 {
   color: black;
@@ -778,7 +785,7 @@ background: #B0C4DE;
 	max-width:85%;
 	max-height: 40%;
   border:1px solid #B2DFEE;
-  background-color:#BFEFFF;
+font-weight: 600;
   margin-top:10px;
   border-radius:5px;
   padding:5px;
@@ -803,6 +810,15 @@ background: #B0C4DE;
 
 textarea::-webkit-input-placeholder {
    color: silver;
+}
+textarea::-moz-placeholder { /* Firefox 18- */
+color: silver;}
+
+textarea::-moz-placeholder {  /* Firefox 19+ */
+color: silver;}
+
+textarea::-ms-input-placeholder {
+color: silver;
 }
 .Area .note
 {
