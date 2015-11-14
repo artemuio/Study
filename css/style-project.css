@@ -462,7 +462,7 @@ background: #EE6363;
   z-index:22;
 }
 
-#settingspopup,#popupforproject{
+#settingspopup,#popupforproject,#popupsettingsproject{
   position:absolute;
   display:none;
   width:600px;
@@ -479,7 +479,7 @@ background: #EE6363;
   z-index: 22;
 }
 
-#closesettingspopup,#closenewproject{
+#closesettingspopup,#closenewproject,.close{
   position:absolute;
   background:black;
   color:white;
@@ -497,6 +497,57 @@ background: #EE6363;
   box-shadow:0 0 10px 0 #000;
   z-index: 2;
 }
+
+.squaredThree {
+width: 20px;
+position: absolute;
+margin: 25px 80%;
+}
+ .squaredThree label {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: greenyellow;/*linear-gradient(to top, #222 0%, #45484d 100%);*/
+    border-radius: 4px;
+    box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,.4);
+}
+.squaredThree label:after {
+         content: '';
+    width: 5px;
+    height: 5px;
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border: 3px solid yellow;
+    border-top: 3px solid yellow;
+    border-right: 3px solid yellow;
+    background: green;
+    opacity: 0;
+    transform: rotate(-45deg);
+}
+    
+ .squaredThree label:hover:after {
+      opacity: 0.3;
+    }
+#changeprojectname:disabled{
+	opacity:0.5;
+}
+
+#changeprojectname:disabled:hover{
+	border:1px solid transparent;
+}
+
+ .squaredThree input[type=checkbox], {
+    visibility: hidden;
+}
+.squaredThree input[type=checkbox]:checked + label:after {
+	color:black;
+    opacity: 1;
+ }    
+
 
 .contact-text2 h3 {
 
@@ -569,8 +620,8 @@ margin: auto;
 .image a{
 	position: absolute;
 	text-decoration: none;
-	padding-left: 20px;
 	padding-top: 30px;
+	width: 200px;
 }
 select{
 	font-family: 'Dorsa-Regular', sans-serif;
@@ -709,10 +760,10 @@ background: #B0E0E6;
 .container1
 {
 background: #B0C4DE;
-  width:49%;
-  cursor:default;
-  height:25%;
-  overflow-y:scroll ;
+width: 48.9%;
+cursor: default;
+height: 25%;
+overflow-y: hidden;
 	border-top: 1px solid #ADD8E6;
 }
 .container1::-webkit-scrollbar
@@ -793,7 +844,7 @@ font-weight: 600;
 .Area textarea
 {
   font-size:1.5em;
-  width:21em;
+  width: 90%;
 
   border-radius:5px;
 	border:1px solid #ccc;
@@ -940,7 +991,7 @@ background: #7D26CD;
 }
 
 .projectava{
-	width:90%;
+	width:100%;
 	height:auto;
 	border-radius:0;
 }

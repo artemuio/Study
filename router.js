@@ -1,5 +1,3 @@
-
-
 function route(fs,handle, pathname, response, request,pool) {
   if (typeof handle[pathname] == 'function') {
       console.log("About to route a request for " + pathname);
@@ -25,6 +23,7 @@ function route(fs,handle, pathname, response, request,pool) {
       response.writeHead(404, {"Content-Type": "text/html"});
       response.write("404 Not found");
       response.end();
+      return;
     }
     }); 
   }
