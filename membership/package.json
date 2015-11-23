@@ -1,0 +1,19 @@
+{
+  "name": "2napp-membership",
+  "version": "0.0.1",
+  "author": "",
+  "description": "",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "knex": "^0.9.0",
+    "mysql": "^2.9.0",
+    "nconf": "^0.8.2",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-watch": "*",
+    "should": "^7.1.1"
+  }
+}
