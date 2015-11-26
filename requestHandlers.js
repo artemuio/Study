@@ -1,6 +1,24 @@
 var querystring = require("querystring"),
 formidable = require("formidable");
 
+
+function show(fs,response,request) {
+  console.log("Request handler 'show' was called.");
+  if(request.method=='GET'){
+   response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("<form action='/upload' method='post' enctype='multipart/form-data'>"+
+    "File: <input type='file' name='downloaded_file' multiple='multiple'></input> "+
+    "<input type='submit' value='Upload'></form>");
+   response.end();
+ } if(request.method=='POST') {
+  response.download(request.files.downloaded_file, function(err){
+  if (!err) { console.log("Request handler 'upload' was applied.");//downloads_remaining_count--; }
+    } else {
+      console.log("Request handler 'upload' was denied.");
+    }
+  });
+ }
+
 function upload(fs,response, request) {
   console.log("Request handler 'upload' was called.");
  /* response.download('/archive.zip', 'file_on_disk.zip', function(err){
@@ -27,22 +45,7 @@ function upload(fs,response, request) {
 };
 
 
-function show(fs,response,request) {
-  console.log("Request handler 'show' was called.");
-  if(request.method=='GET'){
-   response.writeHead(200, {"Content-Type": "text/html"});
-  response.write("<form action='/upload' method='post' enctype='multipart/form-data'>"+
-    "File: <input type='file' name='downloaded_file' multiple='multiple'></input> "+
-    "<input type='submit' value='Upload'></form>");
-   response.end();
- } if(request.method=='POST') {
-  response.download(request.files.downloaded_file, function(err){
-  if (!err) { console.log("Request handler 'upload' was applied.");//downloads_remaining_count--; }
-    } else {
-      console.log("Request handler 'upload' was denied.");
-    }
-  });
- }
+
  /* fs.readFile("tmp/test.png", "binary", function(error, file) {
    if(error) {
      response.writeHead(500, {"Content-Type": "text/plain"});
@@ -173,19 +176,6 @@ function singin(fs,response, request,pool){
     });
 };
 
-function checkusername(username,conn,callback){
-  conn.query("SELECT username FROM users WHERE username = ? LIMIT 2",username,function(er,res){//request.url.substring(17,request.url.length)
-          if(er){
-            console.log("Erro is SELECT");
-            callback(er);
-          }
-          if(res[0]==null){
-            callback(null);
-          } else {
-            callback(true);
-          }
-      });
-}
 
 function createprojecttable(conn,id,username,callback){
   conn.query("CREATE table ?? (id_project int (10) AUTO_INCREMENT,name varchar(20) NOT NULL,theme varchar(20) NOT NULL,format varchar(10)NOT NULL,about varchar(350),PRIMARY KEY (id_project) );",(username+id),function(err){//,
@@ -196,6 +186,8 @@ function createprojecttable(conn,id,username,callback){
           }
         });
 };
+
+
 
 function usersettings(fs,response,request,pool){
   if(request.method == "POST" && request.body.name != null){
@@ -335,6 +327,21 @@ function createnewproject(fs,response, request,pool){
     });
   }
 }
+
+function checkusername(username,conn,callback){
+  conn.query("SELECT username FROM users WHERE username = ? LIMIT 2",username,function(er,res){//request.url.substring(17,request.url.length)
+          if(er){
+            console.log("Erro is SELECT");
+            callback(er);
+          }
+          if(res[0]==null){
+            callback(null);
+          } else {
+            callback(true);
+          }
+      });
+}
+
 
 function makedir(fs,path,callback){
   fs.mkdir(path,function(err){
