@@ -74,7 +74,26 @@ $(document).ready(function(){
     });
 */
     $('#changeprofileimage').children('input').change(function(){
-      $('#changeprofileimage').children("a").children('p')[0].textContent = $('#changeprofileimage').children('input')[0].files[0].name ;
+
+      var file = $('#changeprofileimage').children('input')[0].files[0];
+      if (!file.type.match('image.*')) {
+        return false;
+      }
+      $('#changeprofileimage').children("a").children('p')[0].textContent = file.name ;
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          // Render thumbnail.
+          $('#changeprofileimage').css("background", "url("+ e.target.result+") no-repeat"); 
+          $('#changeprofileimage').css("background-size","cover");     
+        };
+      })(file);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(file); 
     });
 
   $("#settingsusersubmitbutton").click(function(){
@@ -103,6 +122,9 @@ $(document).ready(function(){
   //    $("#settingsusersubmitbutton").hide();
       var formData = new FormData($('#changeprofileimage')[0]);
       formData.append('image',$('#changeprofileimage').children('input')[0].files[0]);
+      if (!$('#changeprofileimage').children('input')[0].files[0].type.match('image.*')) {
+        return false;
+      }
       $.ajax({
             url:"/usersettings",
             method:"POST",

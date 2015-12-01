@@ -18,7 +18,7 @@ function show(fs,response,request) {
     }
   });
  }
-
+}
 function upload(fs,response, request) {
   console.log("Request handler 'upload' was called.");
  /* response.download('/archive.zip', 'file_on_disk.zip', function(err){
@@ -44,20 +44,6 @@ function upload(fs,response, request) {
   });
 };
 
-
-
- /* fs.readFile("tmp/test.png", "binary", function(error, file) {
-   if(error) {
-     response.writeHead(500, {"Content-Type": "text/plain"});
-     response.write(error + "\n");
-     response.end();
-   } else {
-     response.writeHead(200, {"Content-Type": "image/png"});
-     response.write(file, "binary");
-     response.end();
-   }
- });*/
-}
 
 
 function start(fs,response,req) {
@@ -88,10 +74,6 @@ function siteuploaddata(fs,pathname,response){
 });
 }
 
-
-//var queryData='';
-//var querystring = require('querystring');
-
 function singin(fs,response, request,pool){
 	pool.getConnection(function(err,conn){
     if(err){
@@ -99,19 +81,8 @@ function singin(fs,response, request,pool){
       response.writeHead(400);
       response.end();
       return;
-      //throw err;
     }	
-  /*  request.on('data', function(data) {
-     queryData += data;
-     if(queryData.length > 1e6) {
-       queryData = "";
-       response.writeHead(413, {'Content-Type': 'text/plain'}).end();
-       request.connection.destroy();
-     }
-    });*/
-//    request.on('end', function() {
-   //  var obj = querystring.parse(queryData);
-    // queryData="";
+
      if(request.method == "POST"){
       if(!((request.body.name =="" )|| (request.body.username =="") ||(request.body.password =="")||(request.body.email==""))) {
         checkusername(request.body.username,conn,function(err){
@@ -197,19 +168,7 @@ function usersettings(fs,response,request,pool){
       response.writeHead(400);
       response.end();
       return;
-      //throw err;
     }
- /*   if(request.method == "GET"){
-      checkusername(request.url.substring(23,request.url.length),conn,function(err){
-        if(err){
-          response.writeHead(400);
-          response.end();
-        }else{
-          response.writeHead(200);
-          response.end(); 
-        }           
-      });
-    }*/
     if(request.method == "POST"){
       conn.query("UPDATE users SET users.email = ?,users.name = ? WHERE users.id_user = ? ",[request.body.email,request.body.name,request.user.id_user],function(err){
         conn.release();

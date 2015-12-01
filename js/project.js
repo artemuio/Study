@@ -64,7 +64,25 @@ $(document).ready(function(){
   });
 
     $('#changeprofileimage').children('input').change(function(){
-      $('#changeprofileimage').children("a").children('p')[0].textContent = $('#changeprofileimage').children('input')[0].value ;
+      var file = $('#changeprofileimage').children('input')[0].files[0];
+      if (!file.type.match('image.*')) {
+        return false;
+      }
+      $('#changeprofileimage').children("a").children('p')[0].textContent = file.name ;
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          // Render thumbnail.
+          $('#changeprofileimage').css("background", "url("+ e.target.result+") no-repeat"); 
+          $('#changeprofileimage').css("background-size","cover");     
+        };
+      })(file);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(file); 
     });
 
   $("#settingsusersubmitbutton").click(function(){
@@ -93,6 +111,9 @@ $(document).ready(function(){
       $("#settingsuserschangeava").hide();
       var formData = new FormData($('#changeprofileimage')[0]);
       formData.append('image',$('#changeprofileimage').children('input')[0].files[0]);
+      if (!$('#changeprofileimage').children('input')[0].files[0].type.match('image.*')) {
+        return false;
+      }
       $.ajax({
             url:"/usersettings",
             method:"POST",
@@ -112,7 +133,25 @@ $(document).ready(function(){
 
 
   $('#projectnewavaform').children('input').change(function(){
-      $('#projectnewavaform').children("a").children('p')[0].textContent = $('#projectnewavaform').children('input')[0].files[0].name ;
+      var file = $('#projectnewavaform').children('input')[0].files[0];
+      if (!file.type.match('image.*')) {
+        return false;
+      }
+      $('#projectnewavaform').children("a").children('p')[0].textContent = file.name ;
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          // Render thumbnail.
+          $('#projectnewavaform').css("background", "url("+ e.target.result+") no-repeat"); 
+          $('#projectnewavaform').css("background-size","cover");     
+        };
+      })(file);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(file); 
   });
 
   $('#projectnewava').click(function(){
@@ -124,6 +163,9 @@ $(document).ready(function(){
       var id=document.location.search.substring(document.location.search.indexOf('=')+1,document.location.search.length);
       var formData = new FormData($('#projectnewavaform')[0]);
       formData.append('image',$('#projectnewavaform').children('input')[0].files[0]);
+      if (!$('#projectnewavaform').children('input')[0].files[0].type.match('image.*')) {
+        return false;
+      }
       $.ajax({
             url:"/projectsettings?id_project="+id+"&name="+ $("#labelforproject"+id)[0].textContent,
             method:"POST",
