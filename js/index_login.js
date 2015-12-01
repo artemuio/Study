@@ -1,3 +1,9 @@
+$(document).ready(function(){
+
+$( "form" ).on( "submit", function(event){
+    event.preventDefault();
+    Myfunc()
+});
 
 function Myfunc(){
     $("#fail").hide();
@@ -21,3 +27,6 @@ function Myfunc(){
 	$("#password")[0].value = '';
 }
 }
+
+
+});

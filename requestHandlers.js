@@ -1,7 +1,23 @@
-
-
 var querystring = require("querystring"),
 formidable = require("formidable");
+
+
+function show(fs,response,request) {
+  console.log("Request handler 'show' was called.");
+  if(request.method=='GET'){
+   response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("<form action='/upload' method='post' enctype='multipart/form-data'>"+
+    "File: <input type='file' name='downloaded_file' multiple='multiple'></input> "+
+    "<input type='submit' value='Upload'></form>");
+   response.end();
+ } if(request.method=='POST') {
+  response.download(request.files.downloaded_file, function(err){
+  if (!err) { console.log("Request handler 'upload' was applied.");//downloads_remaining_count--; }
+    } else {
+      console.log("Request handler 'upload' was denied.");
+    }
+  });
+ }
 
 function upload(fs,response, request) {
   console.log("Request handler 'upload' was called.");
@@ -29,22 +45,7 @@ function upload(fs,response, request) {
 };
 
 
-function show(fs,response,request) {
-  console.log("Request handler 'show' was called.");
-  if(request.method=='GET'){
-   response.writeHead(200, {"Content-Type": "text/html"});
-  response.write("<form action='/upload' method='post' enctype='multipart/form-data'>"+
-    "File: <input type='file' name='downloaded_file' multiple='multiple'></input> "+
-    "<input type='submit' value='Upload'></form>");
-   response.end();
- } if(request.method=='POST') {
-  response.download(request.files.downloaded_file, function(err){
-  if (!err) { console.log("Request handler 'upload' was applied.");//downloads_remaining_count--; }
-    } else {
-      console.log("Request handler 'upload' was denied.");
-    }
-  });
- }
+
  /* fs.readFile("tmp/test.png", "binary", function(error, file) {
    if(error) {
      response.writeHead(500, {"Content-Type": "text/plain"});
@@ -175,19 +176,6 @@ function singin(fs,response, request,pool){
     });
 };
 
-function checkusername(username,conn,callback){
-  conn.query("SELECT username FROM users WHERE username = ? LIMIT 2",username,function(er,res){//request.url.substring(17,request.url.length)
-          if(er){
-            console.log("Erro is SELECT");
-            callback(er);
-          }
-          if(res[0]==null){
-            callback(null);
-          } else {
-            callback(true);
-          }
-      });
-}
 
 function createprojecttable(conn,id,username,callback){
   conn.query("CREATE table ?? (id_project int (10) AUTO_INCREMENT,name varchar(20) NOT NULL,theme varchar(20) NOT NULL,format varchar(10)NOT NULL,about varchar(350),PRIMARY KEY (id_project) );",(username+id),function(err){//,
@@ -198,6 +186,8 @@ function createprojecttable(conn,id,username,callback){
           }
         });
 };
+
+
 
 function usersettings(fs,response,request,pool){
   if(request.method == "POST" && request.body.name != null){
@@ -236,22 +226,71 @@ function usersettings(fs,response,request,pool){
   });
   }
   if(request.method == "POST" && request.body.name == null){
-    console.log("Change ava profile");
     var form = new formidable.IncomingForm();
-    console.log("about to parse");
+console.log("about to parse");
     form.parse(request, function(error, fields, files) {
-      console.log("parsing done");
+console.log("parsing done");
+      fs.rename(files.upload.path,"user/"+request.user.table_name+"/ava.png", function(err) {
+        if (err) {
+          fs.unlink("user/"+request.user.table_name+"/ava.png");
+          fs.rename(files.upload.path,"user/"+request.user.table_name+"/ava.png");
+        }
+      });
+      response.writeHead(200, {"Content-Type": "text/html"});
+      response.end();
+    });
+  }
+}
 
-// Возможна ошибка в Windows: попытка переименования уже существующего файла 
-  fs.rename(files.upload.path,"user/"+request.user.table_name+"/ava.png", function(err) {
-    if (err) {
-      fs.unlink("user/"+request.user.table_name+"/test.png");
-      fs.rename(files.upload.path,"user/"+request.user.table_name+"/test.png");
+function projectsettings(fs,response,request,pool){
+  if(request.method == "POST" && request.body.name != null){
+    pool.getConnection(function(err,conn){
+    if(err){
+      console.log("MYSQL: can't get connection from pool:",err);
+      response.writeHead(400);
+      response.end();
+      return;
+      //throw err;
     }
+    if(request.body.name != "none"){
+      conn.query("UPDATE ?? SET ??.name = ? WHERE ??.id_project = ?  ",[request.user.table_name,request.user.table_name,request.body.name,request.user.table_name,request.body.id_project],function(err){
+        if(err){
+          response.writeHead(400);
+          response.end();
+          console.log("MYSQL: ERROR: ",err);
+        }else{
+          response.writeHead(200);
+          response.end();
+        }
+      });
+    }
+    if(request.body.about != "none"){
+      conn.query("UPDATE ?? SET ??.about = ? WHERE ??.id_project = ? ",[request.user.table_name,request.user.table_name,request.body.about,request.user.table_name,request.body.id_project],function(err){
+        if(err){
+          response.writeHead(400);
+          response.end();
+          console.log("MYSQL: ERROR: ",err);
+        }else{
+          response.writeHead(200);
+          response.end();
+        }
+      });
+    }
+    conn.release();
   });
-  response.writeHead(200, {"Content-Type": "text/html"});
-  response.end();
-  });
+  }
+  if(request.method == "POST" && request.query.id_project != null && request.query.name != null ){
+    var form = new formidable.IncomingForm();
+    form.parse(request, function(error, fields, files) {
+      fs.rename(files.upload.path,"user/"+request.user.table_name +"/"+ request.query.id_project+request.query.name+"/ava.png", function(err) {
+        if (err) {
+          fs.unlink("user/"+request.user.table_name +"/"+ request.query.id_project+request.query.name+"/ava.png");
+          fs.rename(files.upload.path,"user/"+request.user.table_name +"/"+ request.query.id_project+request.query.name+"/ava.png");
+        }
+      });
+      response.writeHead(200, {"Content-Type": "text/html"});
+      response.end();
+    });
   }
 }
 
@@ -287,10 +326,22 @@ function createnewproject(fs,response, request,pool){
       });
     });
   }
-   if(request.method == "POST" && request.body.name == null){
-    console.log("Change ava PROJECT");
-   }
 }
+
+function checkusername(username,conn,callback){
+  conn.query("SELECT username FROM users WHERE username = ? LIMIT 2",username,function(er,res){//request.url.substring(17,request.url.length)
+          if(er){
+            console.log("Erro is SELECT");
+            callback(er);
+          }
+          if(res[0]==null){
+            callback(null);
+          } else {
+            callback(true);
+          }
+      });
+}
+
 
 function makedir(fs,path,callback){
   fs.mkdir(path,function(err){
@@ -302,7 +353,6 @@ function makedir(fs,path,callback){
   });
 }
 
-
 exports.upload = upload;
 exports.show = show;
 exports.start = start;
@@ -310,3 +360,4 @@ exports.siteuploaddata = siteuploaddata;
 exports.singin = singin;
 exports.createnewproject = createnewproject;
 exports.usersettings=usersettings;
+exports.projectsettings=projectsettings;

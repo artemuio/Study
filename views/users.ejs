@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Home</title>
-<link href="css/style-pr.css" rel="stylesheet" type="text/css" media="all" />
+<link href="css/style-users.css" rel="stylesheet" type="text/css" media="all" />
 <link rel="icon" href="images/favicon22.ico" type="image/x-icon">
 <script type="text/javascript" src="/js/jquery-1.11.3.js"></script>
 <script type="text/javascript" src="/js/profile.js"></script>
@@ -71,91 +71,83 @@
 
 				<div class='name'>
 
-					<h4>MY PROFILE</h4>
+					<h4>ИМЯ ПОЛЬЗОВАТЕЛЯ</h4>
 				</div>
 
 			</div>
-			<div class="friends_form">
+			<div class="container">
+				<div class="user">
+					<img src="/user/<%=user.table_name%>/ava.png" alt="Avatar"/>
+
+					<button>Добавить в круг</button>
+					<!--<button>Убрать из круга</button>-->
+
+					</div>
 				<div class="friends">
-<div class="friendsava">
+					<div class="friend">
+					<img src="/user/<%=user.table_name%>/ava.png" alt="Avatar"/>
+<h2>Artem Lashko</h2>
 				</div>
-				<p>Lashko Artem</p>
-</div>
 
-<div class="friends">
-<div class="friendsava">
-</div>
-<p>Lashko Artem</p>
-</div>
-<div class="friends">
-<div class="friendsava">
-</div>
-<p>Lashko Artem</p>
-</div>
-<div class="friends">
-<div class="friendsava">
-</div>
-<p>Lashko Artem</p>
-</div>
+				<div class="friend">
+				<img src="/user/<%=user.table_name%>/ava.png" alt="Avatar"/>
+				<h2>Artem Lashko</h2>
+				</div>
 
-
+				<div class="friend">
+				<img src="/user/<%=user.table_name%>/ava.png" alt="Avatar"/>
+<h2>Artem Lashko</h2>
 			</div>
-			<div class="login_form">
-				<div class="news">
-					<div class="name_news">
-						<p>2NAPP</p>
-					</div>
-					<div class="avaproject">
-					</div>
-				<p>	Соберите людей, которым понравится ваша идея: на стадии запуска бизнеса большую ценность имеет потенциал работника и «горящие глаза». От того, каких людей вы привлечете для работы над проектом, во многом зависит его успех. </p>
-					</div>
 
-					<div class="news">
-						<div class="name_news">
+			<div class="friend">
+			<img src="/user/<%=user.table_name%>/ava.png" alt="Avatar"/>
+<h2>Artem Lashko</h2>
+		</div>
+
+		<div class="friend">
+		<img src="/user/<%=user.table_name%>/ava.png" alt="Avatar"/>
+<h2>Artem Lashko</h2>
+	</div>
+	<div class="friend">
+	<img src="/user/<%=user.table_name%>/ava.png" alt="Avatar"/>
+<h2>Artem Lashko</h2>
+</div>
+				</div>
+				<div class="user_project">
+					<div class="project">
+						<div class="name_project">
 							<p>2NAPP</p>
 						</div>
-						<div class="avaproject">
-						</div>
+						<img src="/user/<%=user.table_name%>/ava.png" alt="Avatar"/>
+
 					<p>	Соберите людей, которым понравится ваша идея: на стадии запуска бизнеса большую ценность имеет потенциал работника и «горящие глаза». От того, каких людей вы привлечете для работы над проектом, во многом зависит его успех. </p>
 						</div>
 
-						<div class="news">
-							<div class="name_news">
+						<div class="project">
+							<div class="name_project">
 								<p>2NAPP</p>
 							</div>
-							<div class="avaproject">
-							</div>
+							<img src="/user/<%=user.table_name%>/ava.png" alt="Avatar"/>
+
 						<p>	Соберите людей, которым понравится ваша идея: на стадии запуска бизнеса большую ценность имеет потенциал работника и «горящие глаза». От того, каких людей вы привлечете для работы над проектом, во многом зависит его успех. </p>
-							</div>
-			</div>
-			<div class="news_form">
-				<div class="bestnews">
-					<div class="name_bestnews">
-						<p>2NAPP</p>
-					</div>
-					<div class="avaproject">
-					</div>
-					<p>	Соберите людей, которым понравится ваша идея: на стадии запуска бизнеса большую ценность имеет потенциал работника и «горящие глаза». От того, каких людей вы привлечете для работы над проектом, во многом зависит его успех. </p>
 					</div>
 
-					<div class="bestnews">
-						<div class="name_bestnews">
+					<div class="project">
+						<div class="name_project">
 							<p>2NAPP</p>
 						</div>
-						<div class="avaproject">
-						</div>
-						<p>	Соберите людей, которым понравится ваша идея: на стадии запуска бизнеса большую ценность имеет потенциал работника и «горящие глаза». От того, каких людей вы привлечете для работы над проектом, во многом зависит его успех. </p>
-						</div>
+						<img src="/user/<%=user.table_name%>/ava.png" alt="Avatar"/>
 
-						<div class="bestnews">
-							<div class="name_bestnews">
-								<p>2NAPP</p>
-							</div>
-							<div class="avaproject">
-							</div>
-							<p>	Соберите людей, которым понравится ваша идея: на стадии запуска бизнеса большую ценность имеет потенциал работника и «горящие глаза». От того, каких людей вы привлечете для работы над проектом, во многом зависит его успех. </p>
-							</div>
-			</div>
+					<p>	Соберите людей, которым понравится ваша идея: на стадии запуска бизнеса большую ценность имеет потенциал работника и «горящие глаза». От того, каких людей вы привлечете для работы над проектом, во многом зависит его успех. </p>
+				</div>
+				</div>
+
+
+					</div>
+
+
+
+
 			<div class="footer">
 				<p class="link">© All rights reserved | Template by&nbsp;<a href="#"> TUNATEAM</a></p>
 			</div>
@@ -167,7 +159,7 @@
     	<div id="closesettingspopup">X</div>
 			<div class="contact-text2">
 			 <div>
-			 	<form id="changeprofileimage" class="image" enctype="multipart/form-data" method="post">
+			 	<form id="changeprofileimage" class="image" action="/upload" enctype="multipart/form-data" method="post">
 					<a href="#">
 					<img src="/images/camera.png" alt=".">
 					<p>Загрузить фотографию</p>
@@ -194,6 +186,18 @@
 	<div class="new_form">
 		<div class="Regisration">
 			<div class="contact-text2"><h3>Новый проект</h3>
+ 				<form id="projectavaform" class="image" action="/upload" enctype="multipart/form-data" method="post">
+				<!--<div class="image2">-->
+					<a href="#">
+						<img src="images/camera.png" alt="">
+						<p>Логотип проекта</p>
+					</a>
+					<input class="inputtypefile" type="file" name="upload" multiple="multiple">
+				<!--</div>-->
+				</form>
+				<div>
+				 	<input id="projectava" class="submit2" type="submit" value="Сохранить изменения">
+				 </div>
 				<form>
  				<input id="newprojectname" placeholder="Название проекта" class="mail" type="text" required="">
 				<p><select id="selectthemenewproject" name="num" form="data">

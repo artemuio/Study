@@ -38,5 +38,6 @@ handle["/siteuploaddata"] = requestHandlers.siteuploaddata;
 handle["/singin"] = requestHandlers.singin;
 handle["/createnewproject"] = requestHandlers.createnewproject;
 handle["/usersettings"]=requestHandlers.usersettings;
+handle['/projectsettings']=requestHandlers.projectsettings;
 
 server.start(router.route, handle, pool,sessionStore);

@@ -13,6 +13,7 @@ $(document).ready(function(){
 		$(this).fadeOut();
     $("#settingspopup").fadeOut();
     $("#popupforproject").fadeOut();
+    $('#popupsettingsproject').fadeOut();
 	});
   
   //chiusura al click sul pulsante
@@ -29,6 +30,16 @@ $(document).ready(function(){
     $("#hover").fadeOut();
     $("#popupforproject").fadeOut();
   });
+
+  $('#settingsproject').click(function(){
+    $("#hover").fadeIn();
+    $('#popupsettingsproject').fadeIn();
+  });
+  $(".close").click(function(){
+    $("#hover").fadeOut();
+    $('#popupsettingsproject').fadeOut();
+  });
+
 
   $("#submitbuttonnewproject").click(function(){
     if($('#newprojectname')[0].value !=""){
@@ -79,7 +90,7 @@ $(document).ready(function(){
 
     $("#settingsuserschangeava").click(function(){
     if(true){
-  //    $("#settingsusersubmitbutton").hide();
+      $("#settingsuserschangeava").hide();
       var formData = new FormData($('#changeprofileimage')[0]);
       formData.append('image',$('#changeprofileimage').children('input')[0].files[0]);
       $.ajax({
@@ -100,31 +111,61 @@ $(document).ready(function(){
   });
 
 
-$('#settingsuserschangeava').click(function(){
-  changeprojectava();
-});
+  $('#projectnewavaform').children('input').change(function(){
+      $('#projectnewavaform').children("a").children('p')[0].textContent = $('#projectnewavaform').children('input')[0].files[0].name ;
+  });
+
+  $('#projectnewava').click(function(){
+    changeprojectava();
+  });
+
    function changeprojectava(){
-    
   //    $("#settingsusersubmitbutton").hide();
-      var formData = new FormData($('#projectavaform')[0]);
-      formData.append('image',$('#projectavaform').children('input')[0].files[0]);
+      var id=document.location.search.substring(document.location.search.indexOf('=')+1,document.location.search.length);
+      var formData = new FormData($('#projectnewavaform')[0]);
+      formData.append('image',$('#projectnewavaform').children('input')[0].files[0]);
       $.ajax({
-            url:"/usersettings",///projectsettings
+            url:"/projectsettings?id_project="+id+"&name="+ $("#labelforproject"+id)[0].textContent,
             method:"POST",
             contentType: false,
             processData: false,
-            data:{
-              formData,
-              name:"lal"
-            },
+            data:formData,
             success:function(){
-              $("#closenewproject").click();
+              $(".close").click();
             },
             error:function(){
-              $("#errorinsettingsprofile").show();///////////////////////////
+              $("#errorinprojectsettings").show();///////////////////////////
                 console.log("Change error");
             }
         });
   };
+
+  $('#submitsettingsproject').click(function(){
+    $(this).hide();
+    var nameproj = $('#changeprojectname')[0].value;
+    var aboutproj = $('#changeprojecttextabout')[0].value;
+    if($('#changeprojectname')[0].value == ' ' || $('#changeprojectname')[0].value =='' ) {
+      nameproj = "none";
+    }
+    if($('#changeprojecttextabout')[0].value == ' ' || $('#changeprojecttextabout')[0].value == ''){
+      aboutproj = "none";
+    }
+    $.ajax({
+      url:'/projectsettings',
+      method:"POST",
+      data:{
+        id_project:document.location.search.substring(document.location.search.indexOf('=')+1,document.location.search.length),
+        name:nameproj,
+        about:aboutproj
+      },
+      success:function(){
+        $(".close").click();
+      },
+      error:function(){
+        $("#errorinprojectsettings").show();///////////////////////////
+        console.log("Change error");
+      }
+    });
+  });
 
 });
