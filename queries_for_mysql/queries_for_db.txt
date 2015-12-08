@@ -1,3 +1,0 @@
-Query for users table first ,
-than create_table_open_projects,
-than ,please,register a new user in website.
