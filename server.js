@@ -164,7 +164,7 @@ function start(route, handle, pool, sessionStore) {
                     return;
                 }
                 conn.release();
-                res.render('point.ejs', {
+                res.render('projectlist.ejs', {
                     user: req.user, // get the user out of session and pass to template
                     table_names:result,
                 });
