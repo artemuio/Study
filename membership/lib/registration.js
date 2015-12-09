@@ -73,20 +73,3 @@ var Registration = function(knex) {
 };
 
 module.exports = Registration;
-
-
-function checkusername(username,conn,callback){
-    conn.query("SELECT username FROM users WHERE username = ? LIMIT 2",username,
-        function(er,res){
-            //request.url.substring(17,request.url.length)
-            if(er){
-                console.log("Erro is SELECT");
-                callback(er);
-            }
-            if(res[0]==null){
-                callback(null);
-            } else {
-                callback(true);
-            }
-        });
-}
