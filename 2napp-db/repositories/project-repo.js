@@ -7,7 +7,8 @@ var knex = require("../config/dbconfig");
 
 var ProjectRepo = {
     getProjects: function () {
-        return knex.select("id", "name").from("projects")
+        return knex.select("id", "name")
+            .from("projects")
             .then();
     }
 };

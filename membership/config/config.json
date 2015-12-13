@@ -1,7 +1,0 @@
-{
-  "db_name":"test",
-  "db_password":"qwerty123",
-  "db_user":"root",
-  "db_host":"localhost",
-  "db_port":"3306"
-}
