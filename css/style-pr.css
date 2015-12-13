@@ -3,6 +3,14 @@ article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, s
 ol,ul{list-style:none;margin:0;padding:0;}
 /* start editing from here */
 .clear{clear:both;}/* clear float */
+@font-face {
+   font-family: 'Dorsa-Regular';
+   src: url(../fonts/BravoSC.otf)format('truetype');
+}
+@font-face {
+   font-family: 'Open Sans';
+   src: url(../fonts/OpenSans-Regular.ttf)format('truetype');
+}
 img{max-width:100%;}
 /*end reset*/
 .logo img {
@@ -552,10 +560,7 @@ input[type="text"]:hover{
 	background-color: #0063c7 !important;
 	background-image: none !important;
 }
-@font-face {
-   font-family: 'Dorsa-Regular';
-   src: url(../fonts/BravoSC.otf)format('truetype');
-}
+
 .image {
 text-align: center;
 background: #00CED1;
