@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var express  = require('express');
 var session = require('express-session');
 var passport = require('passport');
+var SessionStore = require('express-mysql-session');
 var app = express();
 
 
@@ -20,21 +21,40 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(config.get("cookies_secret_key")));
 app.use(express.static(path.join(__dirname, 'public')));
-//app.use(session({
-//  secret: 'You never cheat me',
-//  name: '2napp_cokie',
-//  store: sessionStore,
-//  resave: true,
-//  saveUninitialized: true
-//}));
+
+var options= {
+  host: config.get("db_host"),
+  port: config.get("db_port"),
+  user: config.get("db_user"),
+  password: config.get("db_3"),
+  database: config.get("db_name"),
+  createDatabaseTable: true,// Whether or not to create the sessions database table, if one does not already exist.
+  schema: {
+    tableName: 'sessions_for',
+    columnNames: {
+      session_id: 'session_id',
+      expires: 'expires',
+      data: 'data'
+    }
+  }
+};
+
+var sessionStore = new SessionStore(options);
+app.use(session({
+  secret: 'You never cheat me',
+  name: '2napp_cokie',
+  store: sessionStore,
+  resave: true,
+  saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
-//require('./config/passport')(passport); // pass passport for configuration
+require('./config/passport')(passport); // pass passport for configuration
 //require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
-//var routes = require('./routes/index');
-//app.use('/', routes);
+var routes = require('./routes/index');
+app.use('/', routes);
 //var users = require('./routes/users');
 //app.use('/users', users);
 

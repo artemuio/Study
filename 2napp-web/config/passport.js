@@ -3,11 +3,11 @@
  */
 
 
-var LocalStrategy = require('./passport-strategies/local-strategy');
-var FacebookStrategy = require('./passport-strategies/facebook-strategy');
-var User = require('user-repo');
-var Membership = require("membership");
-var memb = new Membership();
+//var LocalStrategy = require('./passport-strategies/local-strategy');
+//var FacebookStrategy = require('./passport-strategies/facebook-strategy');
+//var User = require('user-repo');
+//var Membership = require("membership");
+//var memb = new Membership();
 
 // load the auth variables
 var configAuth = require('./auth');
@@ -21,9 +21,9 @@ module.exports = function(passport) {
 
     // used to deserialize the user
     passport.deserializeUser(function (token, done) {
-       memb.findUserByToken(token,done);
+       //memb.findUserByToken(token,done);
     });
 
-    LocalStrategy(passport);
-    FacebookStrategy(passport);
+    //LocalStrategy(passport);
+    //FacebookStrategy(passport);
 };
