@@ -1,7 +1,5 @@
 {
-  "db_name":"test",
-  "db_password":"qwerty123",
-  "db_user":"root",
-  "db_host":"localhost",
-  "db_port":"3306"
+  "server_port":8088,
+  "server_ip": "127.0.0.1",
+  "cookies_secret_key": "SECRET KEY"
 }

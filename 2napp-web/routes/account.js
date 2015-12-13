@@ -6,12 +6,30 @@ module.exports = function(app, passport) {
     /* GET Account page. */
 
 
-    app.get('/login', function(req, res, next) {
-
+    app.post('/login', function(req, res, next) {
+        passport.authenticate('local-login', function(err, user) {
+            if (err) {
+                return next(err); // will generate a 500 error
+            }
+            if (!user) {
+                res.writeHead(400);
+                res.end();
+                return;
+            }
+            req.login(user, function(err) {
+                if (err) {
+                    return next(err);
+                }
+                return res.send({
+                    success: true,
+                    message: 'authentication succeeded'
+                });
+            });
+        })(req, res, next);
     });
 
     // route for logging out
-    router.get('/logout', function(req, res, next) {
+    app.get('/logout', isLoggedIn, function(req, res) {
         req.logout();
         res.redirect('/');
     });

@@ -11,13 +11,13 @@ var UserRepo = {
             .select("*")
             .then();
     },
-    findUserByName:function(name){
+    findUserByName: function (name) {
         return knex("users")
             .select("*")
             .where("username", "=", name)
             .then();
     },
-    getUser: function(userId){
+    getUser: function (userId) {
         return knex("users")
             .select("*")
             .where("id", userId)

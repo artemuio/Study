@@ -6,27 +6,33 @@
 
 var app = require('../app');
 var debug = require('debug')('2napp-web:server');
-var http = require('http');
+var https = require('https');
+var fs = require("fs");
+var config = require('../config');
+var options = {
+  key: fs.readFileSync("keycode/privatekey.pem"),
+  cert: fs.readFileSync("keycode/certificate.pem")
+};
 
 /**
  * Get port from environment and store in Express.
  */
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || config.get('server_port'));
 app.set('port', port);
 
 /**
  * Create HTTP server.
  */
-
-var server = http.createServer(app);
+var server = https.createServer(options, app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+server.listen(port, config.get('server_ip'));
 server.on('error', onError);
 server.on('listening', onListening);
+console.log("Server has started at port:" + config.get("server_port") + " and ip:" + config.get("server_ip"));
 
 /**
  * Normalize a port into a number, string, or false.
