@@ -1,12 +1,24 @@
 /**
  * Created by artem on 12.12.2015.
  */
+var User = require('./models/user');
+var Authentication = require('./lib/authentication');
+var Database = require("../2napp-db");
+var forEach = require('async-foreach').forEach;
+
 
 var Membership = function(){
     var self = this;
+    var db = new Database();
 
     self.authenticate = function(username, password, next){
 
+        var auth = new Authentication();
+
+        db.user.findUserByName(username,function(err,result){
+            auth.applyForMembership(result,password,next);
+           //return next(null,{success:false,authenticationToken:"Asd"})
+        });
     };
 
     self.externalLogin = function(profile, next){
@@ -71,8 +83,18 @@ var Membership = function(){
     };
 
     self.findUserByToken = function(token, next){
-
+        db.user.findUserByToken(token,function(err,result){
+            return next(err,result);
+        });       
+        
     };
+
+    self.getUserProjects = function(id_user,done){
+        db.user.getUserProjects(id_user,function(result){
+                return done(result);
+            })
+        
+    }
 
     return self;
 };

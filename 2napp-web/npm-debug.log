@@ -18,7 +18,7 @@
 9 verbose stack     at maybeClose (child_process.js:1015:16)
 9 verbose stack     at Process.ChildProcess._handle.onexit (child_process.js:1087:5)
 10 verbose pkgid 2napp-web@0.0.1
-11 verbose cwd C:\Users\111\Documents\GitHub\Study\2napp-web\bin
+11 verbose cwd C:\Users\111\Documents\GitHub\Study\2napp-web
 12 error Windows_NT 6.3.9600
 13 error argv "C:\\nodejs\\\\node.exe" "C:\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start"
 14 error node v0.12.7

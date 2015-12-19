@@ -2,18 +2,19 @@
  * Created by artem on 08.12.2015.
  */
 
+var express = require('express');
+var router = express.Router();
+
 module.exports = function(app, passport) {
     /* GET Account page. */
-
-
     app.post('/login', function(req, res, next) {
-        passport.authenticate('local-login', function(err, user) {
+        passport.authenticate('local-login', function(err, user,message) {
             if (err) {
                 return next(err); // will generate a 500 error
             }
             if (!user) {
-                res.writeHead(400);
-                res.end();
+                res.writeHead(400, {'Content-Type': 'text/plain'});
+                res.end(message);//res.write(message);
                 return;
             }
             req.login(user, function(err) {
@@ -55,3 +56,4 @@ function isLoggedIn(req, res, next) {
     // if they aren't redirect them to the home page
     res.redirect('/');
 };
+

@@ -74,7 +74,26 @@ $(document).ready(function(){
     });
 */
     $('#changeprofileimage').children('input').change(function(){
-      $('#changeprofileimage').children("a").children('p')[0].textContent = $('#changeprofileimage').children('input')[0].value ;
+
+      var file = $('#changeprofileimage').children('input')[0].files[0];
+      if (!file.type.match('image.*')) {
+        return false;
+      }
+      $('#changeprofileimage').children("a").children('p')[0].textContent = file.name ;
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          // Render thumbnail.
+          $('#changeprofileimage').css("background", "url("+ e.target.result+") no-repeat"); 
+          $('#changeprofileimage').css("background-size","cover");     
+        };
+      })(file);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(file); 
     });
 
   $("#settingsusersubmitbutton").click(function(){
@@ -103,6 +122,9 @@ $(document).ready(function(){
   //    $("#settingsusersubmitbutton").hide();
       var formData = new FormData($('#changeprofileimage')[0]);
       formData.append('image',$('#changeprofileimage').children('input')[0].files[0]);
+      if (!$('#changeprofileimage').children('input')[0].files[0].type.match('image.*')) {
+        return false;
+      }
       $.ajax({
             url:"/usersettings",
             method:"POST",
@@ -142,31 +164,4 @@ $(document).ready(function(){
             }
         });*/
     })
-
-    $('#projectava').click(function(){
-  changeprojectava();
-});
-   function changeprojectava(){
-    
-  //    $("#settingsusersubmitbutton").hide();
-      var formData = new FormData($('#projectavaform')[0]);
-      formData.append('image',$('#projectavaform').children('input')[0].files[0]);
-      $.ajax({
-            url:"/usersettings?id_project=2",///projectsettings
-            method:"POST",
-            contentType: false,
-            processData: false,
-            data:formData,
-            success:function(){
-              $("#closenewproject").click();
-            },
-            error:function(){
-              $("#errorinsettingsprofile").show();///////////////////////////
-                console.log("Change error");
-            }
-        });
-  };
-
-
-
 });

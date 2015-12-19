@@ -10,7 +10,7 @@ exports.up = function(knex, Promise) {
             table.string('hashedPassword').notNullable();
             table.string('avatarUrl').defaultTo('images/ava.png');
             table.timestamp('createdAt').notNullable().defaultTo(knex.fn.now());
-            table.date('lastEnterDate');
+            table.timestamp('lastEnterDate').defaultTo(knex.fn.now());
             table.string('authenticationToken');
         });
 };

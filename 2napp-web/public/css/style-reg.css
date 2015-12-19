@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'Dorsa-Regular';
-    src: url(../../../../Study/Study/fonts/BravoSC.otf)format('truetype');
+    src: url(../fonts/BravoSC.otf)format('truetype');
 }
 
 body#login {
     font-family: 'Dorsa-Regular';
-    background: url(../../../../Study/Study/images/bg.jpg)no-repeat;
+    background: url(../images/bg.jpg)no-repeat;
     background-size: 100%;
     min-height: 850px;
 }
