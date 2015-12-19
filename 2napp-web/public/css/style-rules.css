@@ -29,10 +29,10 @@ img{max-width:100%;}
 /*end reset*/
 @font-face {
    font-family: 'Dorsa-Regular';
-   src: url(../../../../Study/Study/fonts/BravoSC.otf)format('truetype');
+   src: url(../fonts/BravoSC.otf)format('truetype');
 }
 body{
-	background-image: url("../../../../Study/Study/images/rules.jpg");
+	background-image: url("../images/rules.jpg");
 	background-repeat: no-repeat;
 	background-size: 200%;
 }

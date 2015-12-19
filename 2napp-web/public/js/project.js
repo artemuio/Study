@@ -13,6 +13,7 @@ $(document).ready(function(){
 		$(this).fadeOut();
     $("#settingspopup").fadeOut();
     $("#popupforproject").fadeOut();
+    $('#popupsettingsproject').fadeOut();
 	});
   
   //chiusura al click sul pulsante
@@ -29,6 +30,16 @@ $(document).ready(function(){
     $("#hover").fadeOut();
     $("#popupforproject").fadeOut();
   });
+
+  $('#settingsproject').click(function(){
+    $("#hover").fadeIn();
+    $('#popupsettingsproject').fadeIn();
+  });
+  $(".close").click(function(){
+    $("#hover").fadeOut();
+    $('#popupsettingsproject').fadeOut();
+  });
+
 
   $("#submitbuttonnewproject").click(function(){
     if($('#newprojectname')[0].value !=""){
@@ -53,7 +64,25 @@ $(document).ready(function(){
   });
 
     $('#changeprofileimage').children('input').change(function(){
-      $('#changeprofileimage').children("a").children('p')[0].textContent = $('#changeprofileimage').children('input')[0].value ;
+      var file = $('#changeprofileimage').children('input')[0].files[0];
+      if (!file.type.match('image.*')) {
+        return false;
+      }
+      $('#changeprofileimage').children("a").children('p')[0].textContent = file.name ;
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          // Render thumbnail.
+          $('#changeprofileimage').css("background", "url("+ e.target.result+") no-repeat"); 
+          $('#changeprofileimage').css("background-size","cover");     
+        };
+      })(file);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(file); 
     });
 
   $("#settingsusersubmitbutton").click(function(){
@@ -79,9 +108,12 @@ $(document).ready(function(){
 
     $("#settingsuserschangeava").click(function(){
     if(true){
-  //    $("#settingsusersubmitbutton").hide();
+      $("#settingsuserschangeava").hide();
       var formData = new FormData($('#changeprofileimage')[0]);
       formData.append('image',$('#changeprofileimage').children('input')[0].files[0]);
+      if (!$('#changeprofileimage').children('input')[0].files[0].type.match('image.*')) {
+        return false;
+      }
       $.ajax({
             url:"/usersettings",
             method:"POST",
@@ -100,31 +132,82 @@ $(document).ready(function(){
   });
 
 
-$('#settingsuserschangeava').click(function(){
-  changeprojectava();
-});
+  $('#projectnewavaform').children('input').change(function(){
+      var file = $('#projectnewavaform').children('input')[0].files[0];
+      if (!file.type.match('image.*')) {
+        return false;
+      }
+      $('#projectnewavaform').children("a").children('p')[0].textContent = file.name ;
+
+      var reader = new FileReader();
+
+      // Closure to capture the file information.
+      reader.onload = (function(theFile) {
+        return function(e) {
+          // Render thumbnail.
+          $('#projectnewavaform').css("background", "url("+ e.target.result+") no-repeat"); 
+          $('#projectnewavaform').css("background-size","cover");     
+        };
+      })(file);
+
+      // Read in the image file as a data URL.
+      reader.readAsDataURL(file); 
+  });
+
+  $('#projectnewava').click(function(){
+    changeprojectava();
+  });
+
    function changeprojectava(){
-    
   //    $("#settingsusersubmitbutton").hide();
-      var formData = new FormData($('#projectavaform')[0]);
-      formData.append('image',$('#projectavaform').children('input')[0].files[0]);
+      var id=document.location.search.substring(document.location.search.indexOf('=')+1,document.location.search.length);
+      var formData = new FormData($('#projectnewavaform')[0]);
+      formData.append('image',$('#projectnewavaform').children('input')[0].files[0]);
+      if (!$('#projectnewavaform').children('input')[0].files[0].type.match('image.*')) {
+        return false;
+      }
       $.ajax({
-            url:"/usersettings",///projectsettings
+            url:"/projectsettings?id_project="+id+"&name="+ $("#labelforproject"+id)[0].textContent,
             method:"POST",
             contentType: false,
             processData: false,
-            data:{
-              formData,
-              name:"lal"
-            },
+            data:formData,
             success:function(){
-              $("#closenewproject").click();
+              $(".close").click();
             },
             error:function(){
-              $("#errorinsettingsprofile").show();///////////////////////////
+              $("#errorinprojectsettings").show();///////////////////////////
                 console.log("Change error");
             }
         });
   };
+
+  $('#submitsettingsproject').click(function(){
+    $(this).hide();
+    var nameproj = $('#changeprojectname')[0].value;
+    var aboutproj = $('#changeprojecttextabout')[0].value;
+    if($('#changeprojectname')[0].value == ' ' || $('#changeprojectname')[0].value =='' ) {
+      nameproj = "none";
+    }
+    if($('#changeprojecttextabout')[0].value == ' ' || $('#changeprojecttextabout')[0].value == ''){
+      aboutproj = "none";
+    }
+    $.ajax({
+      url:'/projectsettings',
+      method:"POST",
+      data:{
+        id_project:document.location.search.substring(document.location.search.indexOf('=')+1,document.location.search.length),
+        name:nameproj,
+        about:aboutproj
+      },
+      success:function(){
+        $(".close").click();
+      },
+      error:function(){
+        $("#errorinprojectsettings").show();///////////////////////////
+        console.log("Change error");
+      }
+    });
+  });
 
 });

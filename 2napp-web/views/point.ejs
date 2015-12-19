@@ -4,9 +4,10 @@
 <title>Home</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link rel="icon" href="images/favicon22.ico" type="image/x-icon">
-<link href="/css/style-project.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/css/style-point.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="/js/jquery-1.11.3.js"></script>
 <script type="text/javascript" src="/js/project.js"></script>
+<script type="text/javascript" src="/js/point.js"></script>
 </head>
 <body>
 	<div class="logo">
@@ -29,14 +30,16 @@
 					<div>
 						<input id="ac-1" name="accordion-1" type="checkbox" />
 						<label  for="ac-1" class="homebottom"><i></i><a href="/profile">Домой</a></label>
-						<label id="redag" for="ac-1" class="grid4"><i></i><a id="settingsproject" href="#">Редактировать проект</a></label>
+	<label id="redag" for="ac-1" class="grid4"><i></i><a id="createnewproject" href="#">Редактировать проект</a></label>
 						<label id="new-project" for="ac-1" class="grid1"><i></i><a id="createnewproject" href="#">Создать подпроект</a></label>
 
 					</div>
 					<%table_names.forEach(function(table_names){ %>
 					<div>
 						<input id="<%=table_names.name%>" name="accordion-1" type="checkbox" />
-						<label id="labelforproject<%=table_names.id_project%>" for="<%=table_names.name%>" class="grid2"><i></i><%=table_names.name%></label>
+
+						<label for="<%=table_names.name%>" class="grid2"><i></i><%=table_names.name%></label>
+
 					</div>
 					<% }); %>
 				</section>
@@ -52,6 +55,7 @@
 					</div>
  				</form>
 				<div class="top-nav">
+
 						<ul class="menu2">
 							<li>
 								<div  class="nav-icon"> </div>
@@ -71,17 +75,16 @@
 			</div>
 			<div class="view">
 			<div class="inf_form">
-				<div >
-					<%table_names.forEach(function(table_names){ %>
-					<img class="projectava" src="/user/<%=user.table_name%>/<%=table_names.id_project%><%=table_names.name%>/ava.png" alt="project avatar"/>
-					</div>
 					<div class="inf_project">
+						<h2>Пункт проекта</h2>
+						<%table_names.forEach(function(table_names){ %>
+
 						<p><b>Name project:</b><%=table_names.name%></p>
 						<p><b>description:</b><%=table_names.about%></p>
 	<p><b>subject:</b><%switch(table_names.theme){
-		case '0': %> 
+		case '0': %>
 			Не выбрано
-			 <% 
+			 <%
 			break;
 		case '1': %>
 			Дизайн <%
@@ -125,9 +128,22 @@
 	<p><b>participants:</b>Lashko Artem, Pavlenko Vlad, Nikita Shabalin</p>
 			</div>
 			<%});%>
+
+
+			<div class="file">
+
+				<section class="ac-filebox">
+
+					<div id="file-box" class="filebox">
+						<label id="new-file" for="ac-1" class="newfile"><input id = "fileupload" class="inputtypefile" type="file" name="upload" multiple="multiple"><i></i>   Добавить файл </label>
+						<label class="document"><i class="fotodoc"></i>ОТЧЕТ<i id="datecreator">10/10/15</i><i id="namecreator">artem</i><i class="delete"></i></label>
+						<label class="document"><i class="fotodoc"></i>ОТЧЕТ<i id="datecreator">10/10/15</i><i id="namecreator">artem</i><i class="delete"></i></label>
+
+				</div>
+				</section>
+				</div>
 			</div>
 				<div class="container">
-
 				  <div class="Area">
 				    <div class="L">
 				    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrEyVlaWx0_FK_sz86j-CnUC_pfEqw_Xq_xZUm5CMIyEI_-X2hRUpx1BHL"/>
@@ -192,8 +208,14 @@
     <div id="closenewproject">X</div>
 	<div class="new_form">
 		<div class="Regisration">
-			<div class="contact-text2"><h3>Новый подпроект</h3>
+			<div class="contact-text2"><h3>Новый проект</h3>
  				<form>
+				<div class="image2">
+					<a href="#single.html">
+						<img src="/images/camera.png" alt="">
+						<p>Логотип проекта</p>
+					</a>
+				</div>
  				<input id="newprojectname" placeholder="Название проекта" class="mail" type="text" required="">
 				<p><select id="selectthemenewproject" name="num" form="data">
 					<option value="0">Выбрать тему</option>
@@ -217,41 +239,6 @@
 		</div>
 		<div >
 			<input class="submit2" id="submitbuttonnewproject" type="submit" value="Добавить проект">
-		</div>
-	</div>
-</div>
-<div id="popupsettingsproject">
-    <div class="close">X</div>
-	<div class="new_form">
-		<div class="Regisration">
-			<div class="contact-text2"><h3>Редактировать проект</h3>
- 				<form id="projectnewavaform" class="image" enctype="multipart/form-data" method="post">
-					<a href="#">
-					<img src="images/camera.png" alt="">
-					<p>Логотип проекта</p>
-					</a>
-					<input class="inputtypefile" type="file" name="upload" multiple="multiple">
-				</form>
-				<div>
-				 	<input id="projectnewava" class="submit2" type="submit" value="Сохранить изменения">
-				 </div>
-				<form>
-					<section title=".squaredThree">
-    					<div class="squaredThree">
-      						<input type="checkbox" value="None" id="squaredThree" name="check"  />
-      						<label for="squaredThree"></label>
-    					</div>
-  					</section>
- 					<input id="changeprojectname" placeholder="Название проекта" class="mail" type="text" required="" disabled>
-					<div >
-						<input class="submit3" type="submit" value=" Добавить участников">
-					</div>
- 					<textarea id="changeprojecttextabout" class="textforadditions" placeholder="Описание проекта"></textarea>
- 				</form>
- 			</div>
-		</div>
-		<div >
-			<input class="submit2" id="submitsettingsproject" type="submit" value="Сохранить изменения">
 		</div>
 	</div>
 </div>

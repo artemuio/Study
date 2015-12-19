@@ -26,6 +26,7 @@
   .col-md-3 {
     width: 25%;
   }
+}
 @media(max-width:1280px){
 
 }
@@ -680,4 +681,21 @@ span.label {
 .grid2 {
   margin: 0.4em 0 0;
 }
+}
+@media(max-width:1366px){
+  .friendsava{
+  	height:80%;
+  	width: 100%;
+  }
+  .friends p{
+  	padding-right: 10%;
+  }
+  .bestnews p{
+  font-size: 0.8em;
+  }
+  .news p{
+  
+  font-size: 0.8em;
+
+  }
 }

@@ -8,8 +8,8 @@ var express  = require('express');
 var session = require('express-session');
 var passport = require('passport');
 var app = express();
-
-
+var Database = require("../2napp-db");
+var db = new Database();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -20,21 +20,30 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser(config.get("cookies_secret_key")));
 app.use(express.static(path.join(__dirname, 'public')));
-//app.use(session({
-//  secret: 'You never cheat me',
-//  name: '2napp_cokie',
-//  store: sessionStore,
-//  resave: true,
-//  saveUninitialized: true
-//}));
+app.use(session({
+ secret: 'You never cheat me',
+ name: '2napp_cokie',
+ store: db.sessionStore(session),
+ resave: true,
+ saveUninitialized: true,
+ cookie: { 
+    secure: true,
+    maxAge: 432000000//5days
+  }
+}));
+
 app.use(passport.initialize());
 app.use(passport.session());
 
-//require('./config/passport')(passport); // pass passport for configuration
+require('./config/passport')(passport); // pass passport for configuration
 //require('./app/routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 
-//var routes = require('./routes/index');
-//app.use('/', routes);
+require('./routes/account.js')(app,passport);//contains login,logout methods
+
+require('./routes/profile')(app);
+
+var routesindex = require('./routes/index');
+app.use('/', routesindex);
 //var users = require('./routes/users');
 //app.use('/users', users);
 

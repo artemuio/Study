@@ -9,9 +9,10 @@ var debug = require('debug')('2napp-web:server');
 var https = require('https');
 var fs = require("fs");
 var config = require('../config');
+var path = require('path');
 var options = {
-  key: fs.readFileSync("keycode/privatekey.pem"),
-  cert: fs.readFileSync("keycode/certificate.pem")
+  key: fs.readFileSync(path.join(__dirname,"../keycode","privatekey.pem")),
+  cert: fs.readFileSync(path.join(__dirname,"../keycode","certificate.pem"))
 };
 
 /**

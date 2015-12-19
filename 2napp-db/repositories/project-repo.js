@@ -6,10 +6,13 @@ var Promise = require("bluebird");
 var knex = require("../config/dbconfig");
 
 var ProjectRepo = {
-    getProjects: function () {
-        return knex.select("id", "name")
-            .from("projects")
-            .then();
+    getProjectById: function (id,next) {
+        return knex("project")
+        .select('*')
+        .where("id",'=',id)
+        .then(function(result){
+        	return next(result);
+        });
     }
 };
 
