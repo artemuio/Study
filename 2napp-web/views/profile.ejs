@@ -36,14 +36,12 @@
 					<%projects.forEach(function(projects){ %>
 					<div>
 						<input id="<%=projects.id%>" name="accordion-1" type="checkbox" />
-						<input id="<%=projects.id%>" name="accordion-1" type="checkbox" />
-						<label id="<%=projects.id%>" for="<%=projects.id%>" class="grid2"><i></i><%=projects.name%></label>
-						<article class="ac-small">
+						<label id="<%=projects.id%>" for="<%=projects.id%>" class="grid2"><i></i><%=projects.name%><img alt="" class="labelarrow" src="/images/arrow_down.png"></label>
+						<article id="<%=projects.id%>" class="ac-small">
 							<ul>
-									<li><a id="createnewpreproject" href="#">Добавить пункт проекта</a></li>
+								<li><a id="createnewpreproject" href="#">Добавить пункт проекта</a></li>
 							</ul>
 						</article>
-
 					</div>
 					<% }); %>
 				</div>

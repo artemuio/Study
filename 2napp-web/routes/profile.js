@@ -12,6 +12,15 @@ module.exports = function(app) {
                 });
             })
         });
+
+        app.post('/profile', isLoggedIn, function(req, res, next) {
+            var memb = new Membership();
+            memb.getUserSubprojects(req.user.id, req.body.id_project,function(result) {
+                //res.writeHead(200);
+                res.send(result);
+                //res.end();
+            });
+        });
     }
     // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {

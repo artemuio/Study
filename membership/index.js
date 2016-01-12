@@ -96,6 +96,13 @@ var Membership = function(){
         
     }
 
+    self.getUserSubprojects = function(id_user,id_project,done){
+        db.user.getUserSubprojects(id_user,id_project,function(result){
+                return done(result);
+            })
+        
+    }
+
     return self;
 };
 
