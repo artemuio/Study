@@ -142,9 +142,40 @@ $(document).ready(function(){
     };
   });
 
+    $('#projects').children('div ').children('label').children('img').click(function(){
+      var id = $(this).parent('label')[0].id;
+      if((!$('.ac-container input#'+id).is(":checked") )&& ( $('#projects').children('div ').children('article#'+id).children('ul').children().size() < 2 )){
+       $.ajax({
+            url:"/profile",
+            method:"POST",
+            data:{
+                id_project:id
+            },
+            success:function(maindata){
+              if(maindata.length != 0){
+                maindata.forEach(function(element, index){
+                  var data = maindata[index];
+                  var ulcontainer = $('#projects').children('div ').children('article#'+data.id_project).children('ul');
+                  $(ulcontainer).append("<li><a id=subproject"+data.id_subproject+" href='#'>"+data.subproject_name+"</a></li>");
+                });
+              }
+              $('.ac-container input#'+id).click();
+            },
+            error:function(){
+                console.log("Project error");
+            }
+        });
+     } else {
+        $('.ac-container input#'+id).click();
+     }
+      return false;
+    });
+
     $('#projects').children('div ').children('label').click(function(){
       
       window.location.href=("/project"+'?'+"id_project="+$(this)[0].id);
+
+      return false;
       /*
       $.ajax({
             url:"/project",

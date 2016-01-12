@@ -59,7 +59,22 @@ var UserRepo = {
         .where('id_user','=',id_user)
         .innerJoin('UserProjectBridge', 'project.id', 'UserProjectBridge.id_project')
         .then(function(result){
-            console.log(result)
+            return next(result);
+        })
+        .error(function(err){
+            return next(err);
+        })
+    },
+
+    getUserSubprojects: function (id_user,id_project,next) {
+        knex('subproject')
+        .select('*')
+        .where({
+            'UserSubprojectBridge.id_user': id_user,
+            'subproject.id_project':  id_project
+        })
+        .innerJoin('UserSubprojectBridge', 'subproject.id','UserSubprojectBridge.id_subproject')
+        .then(function(result){
             return next(result);
         })
         .error(function(err){
