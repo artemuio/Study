@@ -6,10 +6,9 @@ var User = function(args){
 
   var user = {};
   user.username = args.username;
+  user.firstname = args.firstname;
+  user.lastname = args.lastname;
   user.email = args.email;
-  user.status = args.status || "pending";
-  user.createdAt = args.createdAt || new Date();
-  user.signInCount = args.signInCount || 0;
   user.authenticationToken = args.authenticationToken || utility.randomString(18);
   return user;
 };

@@ -37,9 +37,8 @@ $(document).ready(function(){
             method:"POST",/////////////////////////method get for name 
             data:{
                 name:$('#newprojectname')[0].value,
-                theme:$('#selectthemenewproject')[0].options.selectedIndex,
-             //   friends:
-                format:$('#selectformatnewproject')[0].options.selectedIndex,
+                id_theme:$('#selectthemenewproject')[0].options.selectedIndex,
+                type:$('#selectformatnewproject')[0].options.selectedIndex,
                 about:$('#newprojecttextabout')[0].value
             },
              success:function(){
@@ -156,7 +155,7 @@ $(document).ready(function(){
                 maindata.forEach(function(element, index){
                   var data = maindata[index];
                   var ulcontainer = $('#projects').children('div ').children('article#'+data.id_project).children('ul');
-                  $(ulcontainer).append("<li><a id=subproject"+data.id_subproject+" href='#'>"+data.subproject_name+"</a></li>");
+                  $(ulcontainer).append("<li><a id='subproject"+data.id_subproject+"' href='subproject?id_subproject="+data.id_subproject +"' >"+data.subproject_name+"</a></li>");
                 });
               }
               $('.ac-container input#'+id).click();
@@ -176,23 +175,5 @@ $(document).ready(function(){
       window.location.href=("/project"+'?'+"id_project="+$(this)[0].id);
 
       return false;
-      /*
-      $.ajax({
-            url:"/project",
-            method:"GET",
-            data:{
-                id_project:$(this)[0].id//$(this)[0].value,
-            },
-            success:function(data){
-              document.open();
-              document.write(data);
-              document.close();
-              //window.location.pathname=("/project?id_project="+$(this)[0].id);
-            },
-            error:function(){
-           //   $("#errorinsettingsprofile").show();
-                console.log("Project error");
-            }
-        });*/
     })
 });

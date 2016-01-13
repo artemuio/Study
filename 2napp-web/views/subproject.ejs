@@ -20,9 +20,9 @@
 	<div class="grids_of_3">
 		<div class="grid1_of_3">
 			<div class="grid_img">
-				<img src="/user/<%=user.table_name%>/ava.png" alt="Avatar"/>
+				<img src="<%=user.avatarUrl%>" alt="Avatar"/>
 						<div class="list_top">
-							  <h4 id="username"><%=user.username%></h4>
+							  <h4 id="username"><%=user.firstname%> <%=user.lastname%></h4>
 						</div>
 			</div>
 			<div class="menu_box_list">
@@ -30,18 +30,9 @@
 					<div>
 						<input id="ac-1" name="accordion-1" type="checkbox" />
 						<label  for="ac-1" class="homebottom"><i></i><a href="/profile">Домой</a></label>
-	<label id="redag" for="ac-1" class="grid4"><i></i><a id="createnewproject" href="#">Редактировать проект</a></label>
-						<label id="new-project" for="ac-1" class="grid1"><i></i><a id="createnewproject" href="#">Создать подпроект</a></label>
+	<label id="redag" for="ac-1" class="grid4"><i></i><a id="createnewproject" href="#">Редактировать подпроект</a></label>
 
 					</div>
-					<%table_names.forEach(function(table_names){ %>
-					<div>
-						<input id="<%=table_names.name%>" name="accordion-1" type="checkbox" />
-
-						<label for="<%=table_names.name%>" class="grid2"><i></i><%=table_names.name%></label>
-
-					</div>
-					<% }); %>
 				</section>
 				<div class="clear"></div>
 			</div>
@@ -77,57 +68,19 @@
 			<div class="inf_form">
 					<div class="inf_project">
 						<h2>Пункт проекта</h2>
-						<%table_names.forEach(function(table_names){ %>
+						<%subprojects.forEach(function(subproject){ %>
 
-						<p><b>Name project:</b><%=table_names.name%></p>
-						<p><b>description:</b><%=table_names.about%></p>
-	<p><b>subject:</b><%switch(table_names.theme){
-		case '0': %>
-			Не выбрано
-			 <%
-			break;
-		case '1': %>
-			Дизайн <%
-		case '0': %>
-			Не выбрано
-			 <%
-			break;
-		case '1': %>
-			Дизайн
-		<%	break;
-		case '2': %>
-			 Путишествия
-		<%	break;
-		case '3': %>
-			Бизнес
-		<%	break;
-		case '4': %>
-			Стартап
-		<%	break;
-		case '5': %>
-			Обучение
-		<%	break;
-		case '6': %>
-			Мероприятие
-		<%	break;
-		default:%>
-		 Ошибка
-	<%	break;
-			}%></p>
-	<p><b>format:</b> <%switch(table_names.format){
-		case '0': %>
-			Открытый
-			<% break;
-		case '1': %>
-			Закрытый
-			<%break;
-		default:%>
-			Error
-			<%};%>
-	</p>
-	<p><b>participants:</b>Lashko Artem, Pavlenko Vlad, Nikita Shabalin</p>
+						<p><b>Name project:</b><%=subproject.subproject_name%></p>
+						<p><b>description:</b><%=subproject.about%></p>
+				<p><b>participants:</b>
+					<b>participants:</b>
+						<%participants.forEach(function(participant,index){ %>
+						<%=participant.firstname %> <%=participant.lastname %>
+						<% if(index != (participants.length-1)){%>,<%}%>
+						<%});%>
+				</p>
 			</div>
-			<%});%>
+				<%});%>
 
 
 			<div class="file">

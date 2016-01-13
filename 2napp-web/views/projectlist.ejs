@@ -19,9 +19,9 @@
 	<div class="grids_of_3">
 		<div class="grid1_of_3">
 			<div class="grid_img">
-				<img src="/user/<%=user.table_name%>/ava.png" alt="Avatar"/>
+				<img src="<%=user.avatarUrl%>" alt="Avatar"/>
 						<div class="list_top">
-							  <h4 id="username"><%=user.username%></h4>
+							  <h4 id="username"><%=user.firstname%> <%=user.lastname%></h4>
 						</div>
 			</div>
 			<div class="menu_box_list">
@@ -33,12 +33,15 @@
 						<label id="new-project" for="ac-1" class="grid1"><i></i><a id="createnewproject" href="#">Создать подпроект</a></label>
 
 					</div>
-					<%table_names.forEach(function(table_names){ %>
+					<div id="subprojects">
+					<%subprojects.forEach(function(subproject){ %>
 					<div>
-						<input id="<%=table_names.name%>" name="accordion-1" type="checkbox" />
-						<label id="labelforproject<%=table_names.id_project%>" for="<%=table_names.name%>" class="grid2"><i></i><%=table_names.name%></label>
+						<input id="<%=subproject.id_subproject%>" name="accordion-1" type="checkbox" />
+						<label id="<%=subproject.id_subproject%>" for="<%=subproject.id_subproject%>" class="grid2"><i></i>
+							<%=subproject.subproject_name%></label>
 					</div>
 					<% }); %>
+				</div>
 				</section>
 				<div class="clear"></div>
 			</div>
@@ -72,57 +75,47 @@
 			<div class="view">
 			<div class="inf_form">
 				<div >
-					<%table_names.forEach(function(table_names){ %>
-					<img class="projectava" src="/user/<%=user.table_name%>/<%=table_names.id_project%><%=table_names.name%>/ava.png" alt="project avatar"/>
+					<%projects.forEach(function(projects){ %>
+					<img class="projectava" src="<%=projects.url_ava%>" alt="project avatar"/>
 					</div>
 					<div class="inf_project">
-						<p><b>Name project:</b><%=table_names.name%></p>
-						<p><b>description:</b><%=table_names.about%></p>
-	<p><b>subject:</b><%switch(table_names.theme){
-		case '0': %> 
-			Не выбрано
-			 <% 
-			break;
-		case '1': %>
-			Дизайн <%
-		case '0': %>
+						<p><b>Name project:</b><%=projects.name%></p>
+						<p><b>description:</b><%=projects.about%></p>
+	<p><b>subject:</b><%switch(projects.id_theme){
+		case 0: %>
 			Не выбрано
 			 <%
 			break;
-		case '1': %>
+		case 1: %>
 			Дизайн
 		<%	break;
-		case '2': %>
+		case 2: %>
 			 Путишествия
 		<%	break;
-		case '3': %>
+		case 3: %>
 			Бизнес
 		<%	break;
-		case '4': %>
+		case 4: %>
 			Стартап
 		<%	break;
-		case '5': %>
+		case 5: %>
 			Обучение
 		<%	break;
-		case '6': %>
+		case 6: %>
 			Мероприятие
 		<%	break;
-		default:%>
+		default: %>
 		 Ошибка
 	<%	break;
 			}%></p>
-	<p><b>format:</b> <%switch(table_names.format){
-		case '0': %>
-			Открытый
-			<% break;
-		case '1': %>
-			Закрытый
-			<%break;
-		default:%>
-			Error
-			<%};%>
+	<p><b>format:</b> <%=projects.type%></p>
+	<p>
+		<b>participants:</b>
+		<%participants.forEach(function(participant,index){ %>
+		<%=participant.firstname %> <%=participant.lastname %>
+		<% if(index != (participants.length-1)){%>,<%}%>
+		<%});%>
 	</p>
-	<p><b>participants:</b>Lashko Artem, Pavlenko Vlad, Nikita Shabalin</p>
 			</div>
 			<%});%>
 			</div>
@@ -143,8 +136,6 @@
 				    <div class="text L textL">Hi Sami, Fine, Tdhankfdfdfd fdfdfd dfdfdfd fddfdfdfd dfdfdfdfd dfdfdfdf er rerere w dw w sf fdcds wd wqd qwd qwdwq d qw dwq d wqd wq d wqdqw f df d f ds fdsfds f df ds fd sf dsf ds f dsf sd f ds fds f dsf ds f dsf ds f fsd dfs dsf d fsd  fd sdf  df sdf dsf ds f fd fds dfs fd  fsd fds fds fds fds  fds fds fds fds fds fds  fd sfd fds sdf fds fds  dfsf d sfd fds f sdf fd sd  fds You, How Are You?
 				    </div>
 				  </div>
-
-
 				  </div>
 <div class="container1">
 				    <div class="Area">

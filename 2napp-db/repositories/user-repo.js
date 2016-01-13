@@ -13,9 +13,10 @@ var UserRepo = {
                 return next(result);
             });
     },
+
     findUserByName: function (name,next) {
         knex("user")
-            .select("*")
+            .select('id','createdAt')
             .where("username", "=", name)
             .then(function(result){
                 return next(null,result);
@@ -24,6 +25,7 @@ var UserRepo = {
                 return next(err,null);
             })
     },
+
     findUserByToken: function (token,next) {
         knex("user")
             .select("*")
@@ -53,34 +55,23 @@ var UserRepo = {
             });
     },
 
-    getUserProjects: function (id_user,next) {
-        knex('project')
-        .select('*')
-        .where('id_user','=',id_user)
-        .innerJoin('UserProjectBridge', 'project.id', 'UserProjectBridge.id_project')
-        .then(function(result){
-            return next(result);
-        })
-        .error(function(err){
-            return next(err);
-        })
-    },
-
-    getUserSubprojects: function (id_user,id_project,next) {
-        knex('subproject')
-        .select('*')
-        .where({
-            'UserSubprojectBridge.id_user': id_user,
-            'subproject.id_project':  id_project
-        })
-        .innerJoin('UserSubprojectBridge', 'subproject.id','UserSubprojectBridge.id_subproject')
-        .then(function(result){
-            return next(result);
-        })
-        .error(function(err){
-            return next(err);
-        })
-    },
+    addUser:function(username,firstname,lastname,email,hashedPassword,authenticationToken,next){
+        knex('user')
+            .insert({
+                username:username,
+                firstname:firstname,
+                lastname:lastname,
+                email:email,
+                hashedPassword:hashedPassword,
+                authenticationToken:authenticationToken
+            })
+            .then(function(result){
+                return next(null,result);
+            })
+            .error(function(err){
+                return next(err,null);
+            })
+    }
 };
 
 module.exports = UserRepo;

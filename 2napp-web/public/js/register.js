@@ -1,6 +1,7 @@
 $(document).ready(function() {
     var usname=false;
     $("#username").focusout(function(){
+        if($("#username")[0].value == '')return false;
         $.ajax({
             url:"/singin",
             method:"GET",
@@ -24,7 +25,8 @@ $(document).ready(function() {
             $("#statusbar").show();
             $("#registerbutton").hide();
             rotation();
-            var name = $("#fullname");
+            var firstname = $("#firstname");
+            var lastname = $("#lastname");
             var email = $("#email");
             var username = $("#username");
             var password = $("#password");
@@ -32,9 +34,11 @@ $(document).ready(function() {
                 url: "/singin",
                 method: "POST",
                 data: {
-                    name: name[0].value,
+                    firstname: firstname[0].value,
+                    lastname: lastname[0].value,
                     username: username[0].value,
                     password: password[0].value,
+                    confirm: $("#retypepassword")[0].value,
                     email: email[0].value
                 },
                 error: function() {
@@ -61,11 +65,17 @@ $(document).ready(function() {
     }
     var checkfunc = function(){
         var r=true;
-        if($("#fullname")[0].value==""){
-            $("#fullname").css({"border":"2px solid red"});
+        if($("#firstname")[0].value==""){
+            $("#firstname").css({"border":"2px solid red"});
             r=false;
         } else {
-            $("#fullname").css({"border":"none"});
+            $("#firstname").css({"border":"none"});
+        }
+        if($("#lastname")[0].value==""){
+            $("#lastname").css({"border":"2px solid red"});
+            r=false;
+        } else {
+            $("#lastname").css({"border":"none"});
         }
         if(($("#username")[0].value=="")||(!usname)){
             $("#username").css({"border":"2px solid red"});

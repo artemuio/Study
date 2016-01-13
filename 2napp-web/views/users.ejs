@@ -18,24 +18,23 @@
 	<div class="grids_of_3">
 		<div class="grid1_of_3">
 			<div class="grid_img">
-				<img src="/user/<%=user.table_name%>/ava.png" alt="Avatar"/>
+				<img src="<%=user.avatarUrl%>" alt="Avatar"/>
 						<div class="list_top">
-							  <h4 id="username"><%=user.username%></h4>
+							  <h4 id="username"><%=user.firstname%> <%=user.lastname%></h4>
 						</div>
 			</div>
 			<div   class="menu_box_list">
 				<section class="ac-container">
 					<div>
 						<input id="ac-1" name="accordion-1" type="checkbox" />
-						<label  for="ac-1" class="homebottom"><i></i><a href="#">Домой</a></label>
+						<label  for="ac-1" class="homebottom"><i></i><a href="/profile">Домой</a></label>
 						<label id="new-project" for="ac-1" class="grid1"><i></i><a id="createnewproject" href="#">Создать новый проект</a></label>
 					</div>
 					<div id="projects">
-					<%table_names.forEach(function(table_names){ %>
+					<%projects.forEach(function(project){ %>
 					<div>
-						<input id="<%=table_names.id_project%>" name="accordion-1" type="checkbox" />
-						<input id="<%=table_names.id_project%>" name="accordion-1" type="checkbox" />
-						<label id="<%=table_names.id_project%>" for="<%=table_names.id_project%>" class="grid2"><i></i><%=table_names.name%></label>
+						<input id="<%=project.id_project%>" name="accordion-1" type="checkbox" />
+						<label id="<%=project.id_project%>" for="<%=project.id_project%>" class="grid2"><i></i><%=project.name%></label>
 						<article class="ac-small">
 							<ul>
 									<li><a id="createnewpreproject" href="#">Добавить пункт проекта</a></li>

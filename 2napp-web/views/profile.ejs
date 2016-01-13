@@ -20,7 +20,7 @@
 	<div class="grids_of_3">
 		<div class="grid1_of_3">
 			<div class="grid_img">
-				<img src="/user/<%=user.table_name%>/ava.png" alt="Avatar"/>
+				<img src="<%=user.avatarUrl%>" alt="Avatar"/>
 						<div class="list_top">
 							  <h4 id="username"><%=user.firstname%> <%=user.lastname%></h4>
 						</div>
@@ -29,15 +29,15 @@
 				<section class="ac-container">
 					<div>
 						<input id="ac-1" name="accordion-1" type="checkbox" />
-						<label  for="ac-1" class="homebottom"><i></i><a href="#">Домой</a></label>
+						<label  for="ac-1" class="homebottom"><i></i><a href="/profile">Домой</a></label>
 						<label id="new-project" for="ac-1" class="grid1"><i></i><a id="createnewproject" href="#">Создать новый проект</a></label>
 					</div>
 					<div id="projects">
 					<%projects.forEach(function(projects){ %>
 					<div>
-						<input id="<%=projects.id%>" name="accordion-1" type="checkbox" />
-						<label id="<%=projects.id%>" for="<%=projects.id%>" class="grid2"><i></i><%=projects.name%><img alt="" class="labelarrow" src="/images/arrow_down.png"></label>
-						<article id="<%=projects.id%>" class="ac-small">
+						<input id="<%=projects.id_project%>" name="accordion-1" type="checkbox" />
+						<label id="<%=projects.id_project%>" for="<%=projects.id_project%>" class="grid2"><i></i><%=projects.name%><img alt="" class="labelarrow" src="/images/arrow_down.png"></label>
+						<article id="<%=projects.id_project%>" class="ac-small">
 							<ul>
 								<li><a id="createnewpreproject" href="#">Добавить пункт проекта</a></li>
 							</ul>
@@ -77,28 +77,34 @@
 			</div>
 			<div class="friends_form">
 				<div class="friends">
+					<a href="/users">
 <div class="friendsava">
 				</div>
 				<p>Lashko Artem</p>
+			</a>
 </div>
 
 <div class="friends">
+	<a href="/users">
 <div class="friendsava">
 </div>
 <p>Lashko Artem</p>
+</a>
 </div>
 <div class="friends">
+	<a href="/users">
 <div class="friendsava">
 </div>
 <p>Lashko Artem</p>
+</a>
 </div>
 <div class="friends">
+	<a href="/users">
 <div class="friendsava">
 </div>
 <p>Lashko Artem</p>
+</a>
 </div>
-
-
 			</div>
 			<div class="login_form">
 				<div class="news">

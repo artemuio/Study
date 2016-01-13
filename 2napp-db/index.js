@@ -5,6 +5,7 @@ var SessionStore = require('express-mysql-session');
 var config = require('./config');
 var User_repo = require('./repositories/user-repo');
 var Project_repo = require('./repositories/project-repo');
+var Subproj_repo = require('./repositories/subproject-repo');
 var knex = require("./config/dbconfig");
 
 var db = function() {
@@ -21,6 +22,7 @@ var db = function() {
 
     self.user = User_repo;
     self.project = Project_repo;
+    self.subproject = Subproj_repo;
 
     return self;
 }

@@ -3,6 +3,8 @@
  */
 var User = require('./models/user');
 var Authentication = require('./lib/authentication');
+var Registration = require('./lib/registration');
+var Project = require('./lib/addingproject');
 var Database = require("../2napp-db");
 var forEach = require('async-foreach').forEach;
 
@@ -78,8 +80,28 @@ var Membership = function(){
         }
     };
 
-    self.register = function(){
 
+    self.findUserByName = function(username,next){
+        db.user.findUserByName(username,function(err,result){
+            return next(err,result);
+        });
+    },
+
+    self.register = function(profile,next){
+        var reg = new Registration();
+        reg.applyForMembership(profile,self.findUserByName,function(err,result){
+            if(err || (result.success == false)){
+                return next(false);
+            } else {
+                db.user.addUser(result.user.username,result.user.firstname,result.user.lastname,result.user.email,result.user.hashedPassword,result.user.authenticationToken,function(err,resultinserted){
+                    if(err || (resultinserted == false)){
+                        return next(false);
+                    } else {
+                        return next(true);
+                    }
+                });
+            }
+        });
     };
 
     self.findUserByToken = function(token, next){
@@ -90,17 +112,58 @@ var Membership = function(){
     };
 
     self.getUserProjects = function(id_user,done){
-        db.user.getUserProjects(id_user,function(result){
+        db.project.getUserProjects(id_user,function(result){
                 return done(result);
-            })
+        })
         
     }
 
-    self.getUserSubprojects = function(id_user,id_project,done){
-        db.user.getUserSubprojects(id_user,id_project,function(result){
-                return done(result);
-            })
+    self.getUserProjectById = function(id_user,id_project,done){
+        db.project.getProjectById(id_user,id_project,function(result){
+            db.project.getProjectUsers(id_project,function(usersresult){
+                return done(result,usersresult);
+            })        
+        })
         
+    }
+
+    self.getUserSubprojectsByProjectId = function(id_user,id_project,done){
+        db.subproject.getUserSubprojectsByProjectId(id_user,id_project,function(result){
+                return done(result);
+        })
+        
+    }
+
+    self.getUserSubprojectById = function(id_user,id_subproject,done){
+        db.subproject.getSubprojectById(id_user,id_subproject,function(result){
+            db.subproject.getSubprojectUsers(id_subproject,function(usersresult){
+                return done(result,usersresult);
+            })        
+        })
+        
+    }
+
+    self.addProject = function(id_user,project,next){
+        var pro = new Project();
+        pro.applyForMembership(project,function(err,result){
+            if(err || (result.success == false)){
+                return next(false);
+            } else {
+                db.project.addProject(result.project.name,result.project.type,id_user,result.project.id_theme,result.project.about,function(err,resultinserted){
+                    if(err || (resultinserted[0] == undefined)){
+                        return next(false);
+                    } else {
+                        db.project.addProjectToUser(id_user,resultinserted[0],1,function(err,resultadded){//1-creator
+                            if(err || (resultadded == false)){
+                                return next(false);
+                            } else { 
+                                return next(true);
+                            }
+                        });
+                    }
+                });      
+            }
+        });
     }
 
     return self;
