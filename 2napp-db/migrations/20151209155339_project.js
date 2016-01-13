@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
 				table.integer('id_creator').unsigned().notNullable().references('id').inTable('user');
 				table.integer('id_theme').unsigned().notNullable().references('id').inTable('themes');
 				table.text('about');
-				table.string('url_ava').defaultTo('images/projava.png');
+				table.string('url_ava').defaultTo('/images/projectava.png');
 				table.timestamp('created_at').notNullable().defaultTo(knex.fn.now());
 			});
 };

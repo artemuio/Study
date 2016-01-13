@@ -210,4 +210,11 @@ $(document).ready(function(){
     });
   });
 
+  $('#subprojects').children('div ').children('label').click(function(){
+      
+      window.location.href=("subproject?id_subproject="+$(this)[0].id);
+
+      return false;
+  });
+
 });

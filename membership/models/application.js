@@ -11,11 +11,15 @@ var Application = function(args){
     app.status  = "pending";
     app.message = null;
 
+    app.name = args.name;
+    app.about = args.about;
+    app.id_theme = args.id_theme;
+
     app.isValid = function(){
       return app.status == "validated";
     };
     app.isInvalid = function(){
-        return !isValid();
+        return !app.isValid();
     };
     app.setInvalid = function(message){
         app.status = "invalid";

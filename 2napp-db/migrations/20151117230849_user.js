@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
             table.string('lastname', 20).notNullable();
             table.string('email').notNullable();
             table.string('hashedPassword').notNullable();
-            table.string('avatarUrl').defaultTo('images/ava.png');
+            table.string('avatarUrl').defaultTo('/images/ava.png');
             table.timestamp('createdAt').notNullable().defaultTo(knex.fn.now());
             table.timestamp('lastEnterDate').defaultTo(knex.fn.now());
             table.string('authenticationToken');

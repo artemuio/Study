@@ -42,6 +42,14 @@ require('./routes/account.js')(app,passport);//contains login,logout methods
 
 require('./routes/profile')(app);
 
+require('./routes/project')(app);
+
+require('./routes/subproject')(app);
+
+require('./routes/users')(app);
+
+require('./routes/localregistration')(app);
+
 var routesindex = require('./routes/index');
 app.use('/', routesindex);
 //var users = require('./routes/users');
