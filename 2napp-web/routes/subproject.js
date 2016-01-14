@@ -12,7 +12,19 @@ module.exports = function(app) {
                 participants: subprojectusers
             });
         })
-    })
+    });
+
+    app.post('/createnewsubproject', isLoggedIn, function(req, res) {
+        var memb = new Membership();
+        memb.addSubproject(req.user.id, req.body, function(result) {
+            if(result == true){
+                res.writeHead(200); 
+            } else {
+                res.writeHead(400);
+            }
+            res.end();
+        }); 
+    });
 };
 
 function isLoggedIn(req, res, next) {

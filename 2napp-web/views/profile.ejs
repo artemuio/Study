@@ -39,7 +39,7 @@
 						<label id="<%=projects.id_project%>" for="<%=projects.id_project%>" class="grid2"><i></i><%=projects.name%><img alt="" class="labelarrow" src="/images/arrow_down.png"></label>
 						<article id="<%=projects.id_project%>" class="ac-small">
 							<ul>
-								<li><a id="createnewpreproject" href="#">Добавить пункт проекта</a></li>
+								<li class="createnewsubproject"><a  href="#">Добавить пункт проекта</a></li>
 							</ul>
 						</article>
 					</div>
@@ -211,9 +211,6 @@
 					<option value="5">Обучение</option>
 					<option value="6">Мероприятие</option>
   				</select></p>
-				<div >
-					<input class="submit3" type="submit" value=" Добавить участников">
-				</div>
 					<p><select id="selectformatnewproject" name="num" form="data">
 						<option value="0">Открытый</option>
 						<option value="1">Закрытый</option>
@@ -224,6 +221,22 @@
 		</div>
 		<div >
 			<input class="submit2" id="submitbuttonnewproject" type="submit" value="Добавить проект">
+		</div>
+	</div>
+</div>
+<div id="popupforsubproject">
+    <div id="closenewsubproject">X</div>
+	<div class="new_form">
+		<div class="Regisration">
+			<div class="contact-text2"><h3>Новый подпроект</h3>
+ 				<form>
+ 					<input id="newsubprojectname" placeholder="Название проекта" class="mail" type="text" required="">
+ 					<textarea id="newsubprojecttextabout" class="textforadditions" placeholder="Описание проекта"></textarea>
+ 				</form>
+ 			</div>
+		</div>
+		<div >
+			<input class="submit2" id="submitbuttonnewsubproject" type="submit" value="Добавить проект">
 		</div>
 	</div>
 </div>

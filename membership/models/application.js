@@ -11,7 +11,8 @@ var Application = function(args){
     app.status  = "pending";
     app.message = null;
 
-    app.name = args.name;
+    app.name = args.name || args.subproject_name;
+    app.id_project = args.id_project;
     app.about = args.about;
     app.id_theme = args.id_theme;
 

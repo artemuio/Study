@@ -460,7 +460,7 @@ background: #EE6363;
   z-index:22;
 }
 
-#settingspopup,#popupforproject,#popupsettingsproject{
+#settingspopup,#popupforsubproject,#popupsettingsproject{
   position:absolute;
   display:none;
   width:600px;
@@ -475,6 +475,10 @@ background: #EE6363;
   text-align:center;
   box-shadow:0 0 10px 0 #000;
   z-index: 22;
+}
+
+#popupforsubproject{
+	height:300px;
 }
 
 #closesettingspopup,#closenewproject,.close{

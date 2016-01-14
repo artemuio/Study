@@ -487,7 +487,7 @@ background: #FF6347 !important;
   z-index:22;
 }
 
-#settingspopup,#popupforproject{
+#settingspopup,#popupforproject,#popupforsubproject{
   position:absolute;
   display:none;
   width:600px;
@@ -504,7 +504,11 @@ background: #FF6347 !important;
   z-index: 22;
 }
 
-#closesettingspopup,#closenewproject{
+#popupforsubproject{
+	height:300px;
+}
+
+#closesettingspopup,#closenewproject,#closenewsubproject{
   position:absolute;
   background:black;
   color:white;

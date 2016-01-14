@@ -12,7 +12,7 @@ $(document).ready(function(){
   $("#hover").click(function(){
 		$(this).fadeOut();
     $("#settingspopup").fadeOut();
-    $("#popupforproject").fadeOut();
+    $("#popupforsubproject").fadeOut();
     $('#popupsettingsproject').fadeOut();
 	});
   
@@ -23,12 +23,12 @@ $(document).ready(function(){
 	});
   $("#new-project").click(function(){
     $("#hover").fadeIn();
-    $("#popupforproject").fadeIn();
+    $("#popupforsubproject").fadeIn();
   })  
   //chiusura al click sul pulsante
   $("#closenewproject").click(function(){
     $("#hover").fadeOut();
-    $("#popupforproject").fadeOut();
+    $("#popupforsubproject").fadeOut();
   });
 
   $('#settingsproject').click(function(){
@@ -40,18 +40,15 @@ $(document).ready(function(){
     $('#popupsettingsproject').fadeOut();
   });
 
-
-  $("#submitbuttonnewproject").click(function(){
-    if($('#newprojectname')[0].value !=""){
+  $("#submitbuttonnewsubproject").click(function(){
+    if($('#newsubprojectname')[0].value !=""){
       $.ajax({
-            url:"/createnewproject",
+            url:"/createnewsubproject",
             method:"POST",/////////////////////////method get for name 
             data:{
-                name:$('#newprojectname')[0].value,
-                theme:$('#selectthemenewproject')[0].options.selectedIndex,
-             //   friends:
-                format:$('#selectformatnewproject')[0].options.selectedIndex,
-                about:$('#newprojecttextabout')[0].value
+                name:$('#newsubprojectname')[0].value,
+                id_project:document.location.search.substring(document.location.search.indexOf('=')+1,document.location.search.length),
+                about:$('#newsubprojecttextabout')[0].value
             },
              success:function(){
               $("#closenewproject").click();

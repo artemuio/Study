@@ -5,6 +5,7 @@ var User = require('./models/user');
 var Authentication = require('./lib/authentication');
 var Registration = require('./lib/registration');
 var Project = require('./lib/addingproject');
+var Subproject = require('./lib/addingsubproject');
 var Database = require("../2napp-db");
 var forEach = require('async-foreach').forEach;
 
@@ -153,7 +154,31 @@ var Membership = function(){
                     if(err || (resultinserted[0] == undefined)){
                         return next(false);
                     } else {
-                        db.project.addProjectToUser(id_user,resultinserted[0],1,function(err,resultadded){//1-creator
+                        db.project.addProjectToUser(id_user,resultinserted[0],1,function(err,resultadded){//1-creator role
+                            if(err || (resultadded == false)){
+                                return next(false);
+                            } else { 
+                                return next(true);
+                            }
+                        });
+                    }
+                });      
+            }
+        });
+    }
+
+    self.addSubproject = function(id_user,subproject,next){
+        var sub = new Subproject();
+        sub.applyForMembership(subproject,function(err,result){
+            if(err || (result.success == false)){
+                return next(false);
+            } else {
+                db.subproject.addSubproject(result.subproject.name,id_user,result.subproject.id_project,result.subproject.about,function(err,resultinserted){
+                    if(err || (resultinserted[0] == undefined)){
+                        if(err)console.log(err);
+                        return next(false);
+                    } else {
+                        db.subproject.addSubprojectToUser(id_user,resultinserted[0],1,function(err,resultadded){//1-creator role
                             if(err || (resultadded == false)){
                                 return next(false);
                             } else { 

@@ -2,6 +2,8 @@ $(document).ready(function(){
 
   $("#hover").height($(document).height());
 
+  var id_project_for_subject = null;
+
   $("#settings").click(function(){
   	$("#hover").fadeIn();
     $("#settingspopup").fadeIn();
@@ -12,6 +14,7 @@ $(document).ready(function(){
   $("#hover").click(function(){
 		$(this).fadeOut();
     $("#settingspopup").fadeOut();
+    $("#popupforsubproject").fadeOut();
     $("#popupforproject").fadeOut();
 	});
   
@@ -24,10 +27,22 @@ $(document).ready(function(){
     $("#hover").fadeIn();
     $("#popupforproject").fadeIn();
   })  
+
+  $(".createnewsubproject").click(function(){
+    $("#hover").fadeIn();
+    $("#popupforsubproject").fadeIn();
+    id_project_for_subject = $(this).parent('ul').parent(' article')[0].id;
+    return false;
+  })  
   //chiusura al click sul pulsante
   $("#closenewproject").click(function(){
     $("#hover").fadeOut();
     $("#popupforproject").fadeOut();
+  });
+
+  $("#closenewsubproject").click(function(){
+    $("#hover").fadeOut();
+    $("#popupforsubproject").fadeOut();
   });
 
   $("#submitbuttonnewproject").click(function(){
@@ -42,7 +57,7 @@ $(document).ready(function(){
                 about:$('#newprojecttextabout')[0].value
             },
              success:function(){
-              $("#closenewproject").click();
+              $("#closenewsubproject").click();
             },
             error:function(){
                 console.log("Username error");
@@ -72,6 +87,29 @@ $(document).ready(function(){
         })
     });
 */
+
+$("#submitbuttonnewsubproject").click(function(){
+    if(($('#newsubprojectname')[0].value !="") && (id_project_for_subject != null)){
+      $.ajax({
+            url:"/createnewsubproject",
+            method:"POST",/////////////////////////method get for name 
+            data:{
+                name:$('#newsubprojectname')[0].value,
+                id_project:id_project_for_subject,
+                about:$('#newsubprojecttextabout')[0].value
+            },
+             success:function(){
+              $("#closenewsubproject").click();
+              id_project_for_subject = null;
+            },
+            error:function(){
+              id_project_for_subject = null;
+              console.log("Newsubproject error");
+            }
+        })
+    };
+  });
+
     $('#changeprofileimage').children('input').change(function(){
 
       var file = $('#changeprofileimage').children('input')[0].files[0];
