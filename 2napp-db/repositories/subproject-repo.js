@@ -47,6 +47,37 @@ var SubprojRepo = {
             return next(err);
         })
     },
+
+    addSubproject:function(name,id_creator,id_project,about,next){
+       knex('subproject')
+        .insert({
+            subproject_name:name,
+            id_creater:id_creator,
+            id_project:id_project,
+            about:about
+        })
+        .then(function(result){
+            return next(null,result);
+        })
+        .error(function(err){
+            return next(err,null);
+        }) 
+    },
+
+    addSubprojectToUser:function(id_user,id_subproject,id_role,next){
+        knex('UserSubprojectBridge')
+        .insert({
+            id_user:id_user,
+            id_subproject:id_subproject,
+            id_role:id_role
+        })
+        .then(function(result){
+            return next(null,result);
+        })
+        .error(function(err){
+            return next(err,null);
+        }) 
+    }
     
 };
 
